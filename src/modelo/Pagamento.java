@@ -1,36 +1,68 @@
 package modelo;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+
 public class Pagamento {
  
-	private int id;
-	 
-	private float valor;
-	 
-	private Hospedagem hospedagem;
-	 
-	private ReciboDeServico reciboDeServico;
-	 
-	private TipoPagamento[] tipoPagamento;
-	 
-	public Pagamento(TipoPagamento tipoPag, float valor) {
-	 
-	}
-	 
-	public float getValor() {
-		return 0;
-	}
-	 
-	public void setValor(float valor) {
-	 
-	}
-	 
-	public TipoPagamento getTipoPag() {
-		return null;
-	}
-	 
-	public void setTipoPag(TipoPagamento tipoPag) {
-	 
-	}
-	 
+    private Integer id;
+    private BigDecimal valor;
+    private ArrayList<TipoPagamento> tipoPagamento = new ArrayList<TipoPagamento>();
+
+    public Pagamento(Integer id, TipoPagamento tipoPag, BigDecimal valor) {
+        this.id = id;
+        this.tipoPagamento.add(tipoPag);
+        this.valor = valor;
+    }
+
+    public Pagamento(Integer id, ArrayList<TipoPagamento> tipoPag, BigDecimal valor) {
+        this.id = id;
+        this.tipoPagamento.addAll(tipoPag);
+        this.valor = valor;
+    }
+    
+    public void efetuarPagamento(){
+        
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public Hospedagem getHospedagem() {
+        return hospedagem;
+    }
+
+    public void setHospedagem(Hospedagem hospedagem) {
+        this.hospedagem = hospedagem;
+    }
+
+    public ReciboDeServico getReciboDeServico() {
+        return reciboDeServico;
+    }
+
+    public void setReciboDeServico(ReciboDeServico reciboDeServico) {
+        this.reciboDeServico = reciboDeServico;
+    }
+
+    public TipoPagamento[] getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(TipoPagamento[] tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
 }
  
