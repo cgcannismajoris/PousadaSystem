@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Pagamento {
- 
+
     private Integer id;
     private BigDecimal valor;
     private ArrayList<TipoPagamento> tipoPagamento = new ArrayList<TipoPagamento>();
@@ -21,48 +21,27 @@ public class Pagamento {
         this.valor = valor;
     }
     
-    public void efetuarPagamento(){
-        
-    }
-    
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public float getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
-    public Hospedagem getHospedagem() {
-        return hospedagem;
-    }
-
-    public void setHospedagem(Hospedagem hospedagem) {
-        this.hospedagem = hospedagem;
-    }
-
-    public ReciboDeServico getReciboDeServico() {
-        return reciboDeServico;
-    }
-
-    public void setReciboDeServico(ReciboDeServico reciboDeServico) {
-        this.reciboDeServico = reciboDeServico;
-    }
-
-    public TipoPagamento[] getTipoPagamento() {
+    public ArrayList<TipoPagamento> getTipoPagamento() {
         return tipoPagamento;
     }
 
-    public void setTipoPagamento(TipoPagamento[] tipoPagamento) {
+    public void setTipoPagamento(ArrayList<TipoPagamento> tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
 }
- 

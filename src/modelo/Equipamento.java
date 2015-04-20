@@ -10,8 +10,6 @@ public class Equipamento {
 	 
 	private Equipamento equipamento;
 	 
-	private ChaleEquipamento[] chaleEquipamento;
-	 
 	public Equipamento(String descricao) {
 	 
 	}

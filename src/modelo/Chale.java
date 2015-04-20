@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Chale {
  
 	private int id;
@@ -7,14 +9,12 @@ public class Chale {
 	private int numero;
 	 
 	private float diaria;
-	 
-	private Equipamento[] equipamento;
-	 
+
 	private Hospedagem[] hospedagem;
 	 
 	private Reserva[] reserva;
 	 
-	private ChaleEquipamento[] chaleEquipamento;
+	private ArrayList<Equipamento> equipamento;
 	 
 	public Chale(int numero, float diaria) {
 	 

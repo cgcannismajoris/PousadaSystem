@@ -6,10 +6,10 @@ import java.util.Date;
 
 public class Hospedagem {
     
-    public static final int FIMHOSP_SUCCESS = 0;
-    public static final int FIMHOSP_INVALIDDATE = 1;
-    public static final int FINALIZED = 1;
-    public static final int PROGRESS = 0;
+    public static final int FIMHOSP_SUCESSO = 0;
+    public static final int FIMHOSP_DATA_INVALIDA = 1;
+    public static final int FINALIZADA = 1;
+    public static final int EM_PROGRRESSO = 0;
     
     private int id;
     private int quantAcomp;
@@ -19,30 +19,25 @@ public class Hospedagem {
     private Cliente cliente;
     private ArrayList<ReciboDeServico> recibosDeServico;
     private Chale chale;
-    private Pagamento pagamento;
-    private int flag = Hospedagem.PROGRESS;
     
-    public Hospedagem() {
-        
-    }
-    
+    private Pagamento pagamento = null;
+    private int flag = Hospedagem.EM_PROGRRESSO;
+
     public Hospedagem(int quantAcomp, Date dataInicio, int previsao, Cliente cliente, Chale chale) {
         this.quantAcomp = quantAcomp;
         this.dataInicio = dataInicio;
         this.previsao = previsao;
         this.cliente = cliente;
-        this.chale = chale;
-        this.pagamento = null;
-        
+        this.chale = chale;    
     }
     
     public int finalizarHospedagem(Date dataSaida){
         if(this.dataInicio.after(dataInicio)){
-            return (FIMHOSP_INVALIDDATE);
+            return (FIMHOSP_DATA_INVALIDA);
         }
 
         
-        return (Hospedagem.FIMHOSP_SUCCESS);
+        return (Hospedagem.FIMHOSP_SUCESSO);
     }
 
     public BigDecimal calcularCustos(){
@@ -105,22 +100,6 @@ public class Hospedagem {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
-
-    public ReciboDeServico[] getReciboDeServico() {
-        return reciboDeServico;
-    }
-
-    public void setReciboDeServico(ReciboDeServico[] reciboDeServico) {
-        this.reciboDeServico = reciboDeServico;
     }
 
     public Chale getChale() {
