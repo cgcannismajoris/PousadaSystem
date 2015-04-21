@@ -2,46 +2,88 @@ package modelo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Pagamento {
-
+public class Pagamento
+{
     private Integer id;
     private BigDecimal valor;
-    private ArrayList<TipoPagamento> tipoPagamento = new ArrayList<TipoPagamento>();
+    
+    private ArrayList<TipoPagamento> tipoPagamento = new ArrayList<>();
 
-    public Pagamento(Integer id, TipoPagamento tipoPag, BigDecimal valor) {
+    public Pagamento(Integer id, TipoPagamento tipoPag, BigDecimal valor)
+    {
         this.id = id;
         this.tipoPagamento.add(tipoPag);
         this.valor = valor;
     }
 
-    public Pagamento(Integer id, ArrayList<TipoPagamento> tipoPag, BigDecimal valor) {
+    public Pagamento(Integer id, ArrayList<TipoPagamento> tipoPag, BigDecimal valor)
+    {
         this.id = id;
         this.tipoPagamento.addAll(tipoPag);
         this.valor = valor;
     }
-    
-    public Integer getId() {
+
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
-    public BigDecimal getValor() {
+    public BigDecimal getValor()
+    {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(BigDecimal valor)
+    {
         this.valor = valor;
     }
 
-    public ArrayList<TipoPagamento> getTipoPagamento() {
+    public ArrayList<TipoPagamento> getTipoPagamento()
+    {
         return tipoPagamento;
     }
 
-    public void setTipoPagamento(ArrayList<TipoPagamento> tipoPagamento) {
+    public void setTipoPagamento(ArrayList<TipoPagamento> tipoPagamento)
+    {
         this.tipoPagamento = tipoPagamento;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.valor);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Pagamento other = (Pagamento) obj;
+        if (!Objects.equals(this.id, other.id))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.valor, other.valor))
+        {
+            return false;
+        }
+        return true;
     }
 }

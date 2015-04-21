@@ -2,127 +2,150 @@ package modelo;
 
 import java.util.ArrayList;
 
-public class Bairro {
- 
+public class Bairro
+{
     public static final int JAEXISTE = 0;
     public static final int SUCESSO = 1;
-    
+
     private Integer id;
-    private String nome; 
+    private String nome;
     private Cidade cidade;
+    private ArrayList<Rua> ruas = new ArrayList<>();
+    
 
-    private ArrayList<Rua> ruas = new ArrayList<Rua>();
-
-    public Bairro(String nome, Integer id){
+    public Bairro(Integer id, String nome)
+    {
         this.id = id;
         this.nome = nome;
     }
-    
-    public Bairro(String nome, Integer id, Rua rua){
+
+    public Bairro(Integer id, String nome, Rua rua)
+    {
         this.id = id;
         this.nome = nome;
         this.ruas.add(rua);
     }
 
-    public Bairro(String nome, Integer id, ArrayList<Rua> ruas){
+    public Bairro(Integer id, String nome, ArrayList<Rua> ruas)
+    {
         this.id = id;
         this.nome = nome;
         this.ruas.addAll(ruas);
     }
 
-    public Rua pesquisarRua(Rua rua){
-        
-        for(Rua r : this.ruas){
-            if(r.equals(rua)){
+    public Rua pesquisarRua(Rua rua)
+    {
+
+        for (Rua r : this.ruas)
+        {
+            if (r.equals(rua))
+            {
                 return (r);
             }
         }
-        
+
         return (null);
     }
-    
-    public int addRua(Rua rua){
-       
-        if(this.ruas.contains(rua)){
-           return (Bairro.JAEXISTE);
+
+    public int addRua(Rua rua)
+    {
+
+        if (this.ruas.contains(rua))
+        {
+            return (Bairro.JAEXISTE);
         }
-        
+
         this.ruas.add(rua);
-            
+
         return (Bairro.SUCESSO);
     }
-    
-    public int addRuas(ArrayList<Rua> ruas){
-        
+
+    public int addRuas(ArrayList<Rua> ruas)
+    {
+
         int counter = 0;
-        
-        for(Rua r : ruas){
-            if(!this.ruas.contains(r)){
+
+        for (Rua r : ruas)
+        {
+            if (!this.ruas.contains(r))
+            {
                 this.ruas.add(r);
                 counter++;
             }
         }
-        
+
         return (counter);
     }
-    
-    public void removerRua(Rua rua){
+
+    public void removerRua(Rua rua)
+    {
         this.ruas.remove(rua);
     }
-    
-    
-    public int getId() {
+
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
-    public Cidade getCidade() {
+    public Cidade getCidade()
+    {
         return cidade;
     }
 
-    public void setCidade(Cidade cidade) {
+    public void setCidade(Cidade cidade)
+    {
         this.cidade = cidade;
     }
 
-    public ArrayList<Rua> getRua() {
+    public ArrayList<Rua> getRua()
+    {
         return ruas;
     }
 
-    public void setRua(ArrayList<Rua> ruas) {
+    public void setRua(ArrayList<Rua> ruas)
+    {
         this.ruas = ruas;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 3;
         hash = 67 * hash + this.id;
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
+        {
             return false;
         }
         final Bairro other = (Bairro) obj;
-        if (this.id != other.id) {
+        if (this.id != other.id)
+        {
             return false;
         }
         return true;
     }
 }
- 
