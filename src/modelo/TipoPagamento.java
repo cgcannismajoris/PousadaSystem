@@ -34,32 +34,22 @@ public class TipoPagamento
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.descricao);
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (obj == null)
-        {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass())
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final TipoPagamento other = (TipoPagamento) obj;
-        if (!Objects.equals(this.id, other.id))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.descricao, other.descricao))
-        {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;

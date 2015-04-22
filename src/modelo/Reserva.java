@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class Reserva
 {
@@ -13,8 +12,7 @@ public class Reserva
     private Chale chale;
 
     
-    public Reserva(int id, Date dataInicio, Date dataFim,
-            Cliente cliente,
+    public Reserva(int id, Date dataInicio, Date dataFim, Cliente cliente,
             Chale chale)
     {
         this.id = id;
@@ -75,47 +73,22 @@ public class Reserva
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.id;
-        hash = 71 * hash + Objects.hashCode(this.dataInicio);
-        hash = 71 * hash + Objects.hashCode(this.dataFim);
-        hash = 71 * hash + Objects.hashCode(this.cliente);
-        hash = 71 * hash + Objects.hashCode(this.chale);
+        hash = 53 * hash + this.id;
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (obj == null)
-        {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass())
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Reserva other = (Reserva) obj;
-        if (this.id != other.id)
-        {
-            return false;
-        }
-        if (!Objects.equals(this.dataInicio, other.dataInicio))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.dataFim, other.dataFim))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.cliente, other.cliente))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.chale, other.chale))
-        {
+        if (this.id != other.id) {
             return false;
         }
         return true;

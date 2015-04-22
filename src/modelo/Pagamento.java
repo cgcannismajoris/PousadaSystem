@@ -56,32 +56,22 @@ public class Pagamento
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.valor);
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (obj == null)
-        {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass())
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Pagamento other = (Pagamento) obj;
-        if (!Objects.equals(this.id, other.id))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.valor, other.valor))
-        {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;

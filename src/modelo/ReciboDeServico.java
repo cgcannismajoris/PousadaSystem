@@ -12,7 +12,6 @@ public class ReciboDeServico
     
     private Servico servico;
 
-    
     public ReciboDeServico(Integer id, Servico servico,
             Date data,
             BigDecimal valorTotal)
@@ -64,42 +63,22 @@ public class ReciboDeServico
     }
 
     @Override
-    public int hashCode()
-    {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.data);
-        hash = 29 * hash + Objects.hashCode(this.valorTotal);
-        hash = 29 * hash + Objects.hashCode(this.servico);
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (obj == null)
-        {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass())
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final ReciboDeServico other = (ReciboDeServico) obj;
-        if (!Objects.equals(this.id, other.id))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.data, other.data))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.valorTotal, other.valorTotal))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.servico, other.servico))
-        {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;

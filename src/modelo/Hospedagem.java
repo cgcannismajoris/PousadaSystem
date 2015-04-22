@@ -51,7 +51,7 @@ public class Hospedagem
             custos.add(new BigDecimal(i.getValorTotal().toString()));
         }
 
-        //adicionar código para aplicar multa
+        //adicionar código para aplicar multa, a regra de negócio não está bem definida
         return custos;
     }
 

@@ -10,9 +10,7 @@ public class Servico
     private String nome;
     private String descricao;
 
-    private ArrayList<ReciboDeServico> reciboDeServico = new ArrayList<>();
     
-
     public Servico(Integer id, String nome, String descricao, Hospedagem hospedagem)
     {
         this.id = id;
@@ -50,50 +48,26 @@ public class Servico
         this.descricao = descricao;
     }
 
-    public ArrayList<ReciboDeServico> getReciboDeServico()
-    {
-        return reciboDeServico;
-    }
-
-    public void setReciboDeServico(ArrayList<ReciboDeServico> reciboDeServico)
-    {
-        this.reciboDeServico = reciboDeServico;
-    }
-
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.descricao);
+        hash = 61 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (obj == null)
-        {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass())
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Servico other = (Servico) obj;
-        if (!Objects.equals(this.id, other.id))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.descricao, other.descricao))
-        {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
+    
 }

@@ -1,28 +1,18 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Equipamento
 {
     private Integer id;
     private String descricao;
-    private ArrayList<Chale> chales = new ArrayList<>();
-    
 
     public Equipamento(Integer id, String descricao)
     {
         this.id = id;
         this.descricao = descricao;
     }
-
-    public Equipamento(Integer id, String descricao, ArrayList<Chale> chales)
-    {
-        this.id = id;
-        this.descricao = descricao;
-        this.chales = chales;
-    }
-
+    
     public Integer getId()
     {
         return id;
@@ -41,16 +31,6 @@ public class Equipamento
     public void setDescricao(String descricao)
     {
         this.descricao = descricao;
-    }
-
-    public ArrayList<Chale> getChales()
-    {
-        return chales;
-    }
-
-    public void setChales(ArrayList<Chale> chales)
-    {
-        this.chales = chales;
     }
 
     @Override

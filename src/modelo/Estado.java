@@ -15,7 +15,6 @@ public class Estado
 
     private ArrayList<Cidade> cidades = new ArrayList<>();
     private ArrayList<Area> areas = new ArrayList<>();
-    
 
     public Estado(Integer id, String nome, Pais pais)
     {
