@@ -2,4 +2,4 @@
 Projeto PousadaSystem.
 
 #ATENÇÃO!
-Este branch (dev_nb8) se destina às implementações maciças, usando como base a plataforma JSF.
+Este branch (dev_nb8) se destina à modelagem e implementação dos incrementos quando estão nos cartões BackLog e Doing.
