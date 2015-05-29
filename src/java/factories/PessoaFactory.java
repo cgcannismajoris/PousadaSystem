@@ -1,4 +1,4 @@
-package factorys;
+package factories;
 
 import modelo.Administrador;
 import modelo.Cliente;
