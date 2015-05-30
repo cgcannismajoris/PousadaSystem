@@ -1,34 +1,46 @@
 /* CSS PERSONALIZADO */
 
-.container, .container-fluid 
+[class*="col-"], header, nav, aside, section, div[role="main"] 
 {
-    padding-right: 15px;
-    padding-left: 15px;
-    background-color: #f9f9f9;
-}
-
-.row 
-{
-    margin-bottom: 20px;
-}
-
-[class*="col-"], header, footer, nav, aside, section, div[role="main"] 
-{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: #f5f5f5;
-    background-color: rgba(86,61,124,.15);
+    // Borda para depuração de interface
     border: 1px solid #ddd;
     border: 1px solid rgba(86,61,124,.2);
-    text-align: center;
 }
 
-div[role="main"] 
+/* centered columns styles */
+.row-centered 
 {
-    background-color: #fff;
+    text-align:center;
 }
 
-div[role="main"], nav, aside 
+.col-centered 
 {
-    height: 600px;
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.hcontrol
+{
+    padding: 20px;
+    margin: auto;
+}
+
+.hcentral
+{
+    padding: 20px;
+    margin: auto;
+    
+    text-align: left;
+}
+
+.img-center
+{
+    width: 105px; 
+    height: 40px;
+    
+    margin: 10px auto;
 }
