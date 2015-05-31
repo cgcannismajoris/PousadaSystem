@@ -1,46 +1,29 @@
-/* CSS PERSONALIZADO */
-
-[class*="col-"], header, nav, aside, section, div[role="main"] 
+@font-face
 {
-    // Borda para depuração de interface
-    border: 1px solid #ddd;
-    border: 1px solid rgba(86,61,124,.2);
+    font-family: 'ubuntuc';
+    src: url("#{resource['fonts:Ubuntu-C.ttf']}") format('truetype');
 }
 
-/* centered columns styles */
-.row-centered 
+.arcadia-logo
 {
-    text-align:center;
+    font-family: 'ubuntuc', sans-serif;
+    font-size: 32px;
 }
 
-.col-centered 
+.btn-hcontrol
 {
-    display:inline-block;
-    float:none;
-    /* reset the text-align */
-    text-align:left;
-    /* inline-block space fix */
-    margin-right:-4px;
+    margin: 8px;
 }
 
-.hcontrol
-{
-    padding: 20px;
-    margin: auto;
-}
+@media screen and (max-width: 800px) 
+{ 
+    div.collapsing
+    {
+        text-align: center;
+    }
 
-.hcentral
-{
-    padding: 20px;
-    margin: auto;
-    
-    text-align: left;
-}
-
-.img-center
-{
-    width: 105px; 
-    height: 40px;
-    
-    margin: 10px auto;
+    div.collapse
+    {
+        text-align: center;
+    }
 }
