@@ -15,7 +15,7 @@
 
         <!-- Bootstrap theme
         <h:outputStylesheet library="css" name="bootstrap-theme.min.css"/>
-        -->        
+        -->     
 
         <!-- INCLUIR CSSs PERSONALIZADOS -->
         <h:outputStylesheet library="css" name="scrolling-nav.css"/>
@@ -26,7 +26,7 @@
 
     <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-        <!-- ######################### CABEÇALHO ####################### -->
+        <!-- ########################## CABEÇALHO ########################## -->
         <header id="header">
             <!-- ######################## NAV ######################## -->
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -53,47 +53,48 @@
 
                     </div>
 
-                    <!-- ############### HCENTRAL ###################### -->
+                    <!-- ################### HCENTRAL ###################### -->
                     <div id="navbar" class="navbar-collapse collapse">
+                        
+                        <!-- ################ HCENTRAL_ITEM ################ -->
                         <ul class="nav navbar-nav">
-                            <li><a href="#">[HCENTRAL]</a></li>
+                            <!-- ESPAÇO PARA 1 LI, SOMENTE -->
+                            <li>
+                                <ui:insert name="hcentral">[HCENTRAL_ITEM]</ui:insert>
+                            </li>
                         </ul>
+                        
+                        <!-- ################# HCONTROL #################### -->
                         <ul class="nav navbar-nav navbar-right center-block hcontrol">
-                            <!--<ui:insert name="hcontrol">HCONTROL</ui:insert>-->
-                            <li><h:commandButton value="VER PERFIL"
-                                                 class="btn btn-success btn-hcontrol"/></li>
-                            <li><h:commandButton value="EFETUAR RESERVA"
-                                                 class="btn btn-success btn-hcontrol"/></li>
-                            <li><h:commandButton value="LOGIN"
-                                                 class="btn btn-primary btn-hcontrol"/></li>
+                            
+                            <!-- ESPAÇO PARA 2 LIs, SOMENTE -->
+                            <li>
+                                <ui:insert name="hcontrol_00">
+                                    [HCONTROL_00]
+                                </ui:insert>
+                            </li>
+                            
+                            <li>
+                                <ui:insert name="hcontrol_01">
+                                    [HCONTROL_01]
+                                </ui:insert>
+                            </li>
                         </ul>
+                        
                     </div>
 
                 </h:form> <!-- /frmHeader -->
             </nav>
         </header>
 
-        <!-- SEÇÃO DE INTRODUÇÃO (MAIN) -->
-        <section id="intro" class="intro-section">
-            <h:form id="main" class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ui:insert name="main">MAIN</ui:insert>
-                    </div>
-                </div>
-            </h:form>
-        </section>
-
-        <!-- MISSÃO -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>About Section</h1>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- ############################ CORPO ############################ -->
+        
+        <ui:insert name="main_sections">
+            <br/><br/><br/><br/><br/><br/>
+            [MAIN_SECTION] (-- Insira Seções Aqui --)
+            <br/>
+            Recomendação: Um formulário para cada seção
+        </ui:insert>
 
     </body>
 
