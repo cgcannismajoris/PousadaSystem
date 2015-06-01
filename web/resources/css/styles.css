@@ -10,12 +10,17 @@
     font-size: 32px;
 }
 
-.btn-hcontrol
+.hcontrol
 {
-    margin: 8px;
+    margin-top: 8px;
 }
 
-@media screen and (max-width: 800px) 
+.btn-hcontrol
+{
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) 
 { 
     div.collapsing
     {
@@ -25,5 +30,10 @@
     div.collapse
     {
         text-align: center;
+    }
+
+    .btn-hcontrol
+    {
+        margin-top: 8px;
     }
 }
