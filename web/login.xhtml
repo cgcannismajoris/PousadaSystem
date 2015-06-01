@@ -3,39 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    
-    <h:head>
-        <!-- Bootstrap core CSS -->
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- INCLUIR CSSs PERSONALIZADOS -->
         <h:outputStylesheet library="css" name="sigin.css"/>
-    </h:head>
+    </head>
 
-    <h:body>
-        <ui:composition template="./templates/portal.xhtml">
+    <body>
 
-            <ui:define name="hcontrol">
-                hcontrol
+        <ui:composition template="./templates/template_main.xhtml">
+
+            <ui:define name="hcentral">
+
             </ui:define>
 
-            <ui:define name="main">
-                <div class="container">
+            <ui:define name="hcontrol_00">
 
-                    <form class="form-signin">
-                        <h2 class="form-signin-heading">Login</h2>
-                        <label for="inputEmail" class="sr-only">E-mail</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Endereço de e-mail" required="true"/>
-                        <label for="inputPassword" class="sr-only">Senha</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required="true"/>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="remember-me"/>
-                            </label>
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">ENTRAR</button>
-                    </form>
+            </ui:define>
 
-                </div> <!-- /container -->
+            <ui:define name="hcontrol_01">
+
+            </ui:define>
+
+            <ui:define name="main_sections">
+
+                <section id="main" class="main-section">
+                    <div class="container">
+                        <h:form class="form-signin frmLogin img-rounded col-sm-4 col-centered">
+                            <h2 class="form-signin-heading text-center">Login</h2>
+                            
+                            <label for="inputEmail" class="sr-only">Endereço de Email</label>
+                            <input type="email" id="inputEmail" class="form-control input-frmLogin"/>
+                            
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="password" id="inputPassword" class="form-control input-frmLogin"/>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+                        </h:form>
+                    </div>
+                </section>
+
             </ui:define>
 
         </ui:composition>
-    </h:body>
+
+    </body>
 </html>
