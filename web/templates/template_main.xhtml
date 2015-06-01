@@ -8,8 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <!-- MOBILE FIRST - SEM ZOOM -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, 
-              maximum-scale=1, user-scalable=no"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
         <!-- Bootstrap core CSS -->
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
@@ -25,67 +24,77 @@
         <title>Main Template</title>
     </h:head>
 
-    <body>
-        <div class="container">
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-            <!-- ######################### CABEÇALHO ####################### -->
-            <header id="header">
-                <!-- ######################## NAV ######################## -->
-                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                    <h:form id="frmHeader" class="container-fluid">
+        <!-- ######################### CABEÇALHO ####################### -->
+        <header id="header">
+            <!-- ######################## NAV ######################## -->
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <h:form id="frmHeader" class="container-fluid">
 
-                        <!-- ############### BOTÃO TOGGLE E HLOGO ########## -->
-                        <div class="navbar-header">
-                            <!-- ############### BOTÃO TOGGLE ############## -->
-                            <button type="button" class="navbar-toggle collapsed" 
-                                    data-toggle="collapse" 
-                                    data-target="#navbar"
-                                    aria-expanded="false"
-                                    aria-controls="navbar">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
+                    <!-- ############### BOTÃO TOGGLE E HLOGO ########## -->
+                    <div class="navbar-header">
+                        <!-- ############### BOTÃO TOGGLE ############## -->
+                        <button type="button" class="navbar-toggle collapsed" 
+                                data-toggle="collapse" 
+                                data-target="#navbar"
+                                aria-expanded="false"
+                                aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
 
-                            <!-- #################### HLOGO ################ -->
-                            <h:commandLink class="navbar-brand page-scroll arcadia-logo">
-                                ARCADIA
-                            </h:commandLink>
-                            
-                        </div>
+                        <!-- #################### HLOGO ################ -->
+                        <h:commandLink class="navbar-brand page-scroll arcadia-logo">
+                            ARCADIA
+                        </h:commandLink>
 
-                        <!-- ############### HCENTRAL ###################### -->
-                        <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#">[HCENTRAL]</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right center-block hcontrol">
-                                <!--<ui:insert name="hcontrol">HCONTROL</ui:insert>-->
-                                <li><h:commandButton value="VER PERFIL"
-                                                     class="btn btn-success btn-hcontrol"/></li>
-                                <li><h:commandButton value="EFETUAR RESERVA"
-                                                     class="btn btn-success btn-hcontrol"/></li>
-                                <li><h:commandButton value="LOGIN"
-                                                     class="btn btn-primary btn-hcontrol"/></li>
-                            </ul>
-                        </div>
-                        
-                    </h:form>
-                </nav>
-            </header>
-
-            <!-- SEÇÃO DE INTRODUÇÃO (MAIN) -->
-            <section id="intro" class="intro-section">
-                <h:form id="main" class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <ui:insert name="main">MAIN</ui:insert>
-                        </div>
                     </div>
-                </h:form>
-            </section>
-        </div>
+
+                    <!-- ############### HCENTRAL ###################### -->
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">[HCENTRAL]</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right center-block hcontrol">
+                            <!--<ui:insert name="hcontrol">HCONTROL</ui:insert>-->
+                            <li><h:commandButton value="VER PERFIL"
+                                                 class="btn btn-success btn-hcontrol"/></li>
+                            <li><h:commandButton value="EFETUAR RESERVA"
+                                                 class="btn btn-success btn-hcontrol"/></li>
+                            <li><h:commandButton value="LOGIN"
+                                                 class="btn btn-primary btn-hcontrol"/></li>
+                        </ul>
+                    </div>
+
+                </h:form> <!-- /frmHeader -->
+            </nav>
+        </header>
+
+        <!-- SEÇÃO DE INTRODUÇÃO (MAIN) -->
+        <section id="intro" class="intro-section">
+            <h:form id="main" class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ui:insert name="main">MAIN</ui:insert>
+                    </div>
+                </div>
+            </h:form>
+        </section>
+
+        <!-- MISSÃO -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>About Section</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </body>
 
     <!-- Bootstrap core JavaScript
