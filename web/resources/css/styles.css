@@ -40,3 +40,52 @@
     }
 }
 /******************************************************************************/
+
+.main_intro
+{
+    margin-top: 250px;
+}
+
+.main_intro_section
+{
+    margin-top: -20px;
+}
+
+.btn-aproveitar-main
+{
+    margin-top: 330px;
+}
+
+@media screen and (max-width: 768px), screen and (max-height: 625px)
+{ 
+    .responsive-width 
+    {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .main_intro
+    {
+        margin-top: 100px;
+    }
+
+    .btn-aproveitar-main
+    {
+        margin-top: 100px;
+    }
+}
+
+.row-centered 
+{
+    text-align:center;
+}
+
+.col-centered 
+{
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
