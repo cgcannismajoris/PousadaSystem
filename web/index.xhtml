@@ -1,17 +1,84 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
+
     <h:head>
         <title>Pousada Arcadia</title>
     </h:head>
+
     <h:body>
-        <h:form>
-            <h:commandLink value="Portal" action="/templates/template_main.xhtml"/><br/>
-            <h:commandLink value="Login" action="/login.xhtml"/><br/>
-            <h:commandLink value="Index_test" action="/index_test.xhtml"/>
+        <ui:composition template="./templates/template_main.xhtml">
             
-        </h:form>
+            <ui:define name="titulo_pagina">
+                Pousada Arcadia
+            </ui:define>
+
+            <ui:define name="hcentral">
+                <!-- Não preencha nada aqui -->
+            </ui:define>
+
+            <ui:define name="hcontrol_00">
+                <h:commandButton value="QUERO ME HOSPEDAR"
+                                 class="btn btn-success btn-hcontrol"/>
+            </ui:define>
+
+            <ui:define name="hcontrol_01">
+                <h:commandButton value="LOGIN"
+                                 class="btn btn-primary btn-hcontrol"/>
+            </ui:define>
+
+            <ui:define name="main_sections">
+
+                <!-- ################### SEÇÃO PRINCIPAL ################### -->
+                <section id="main" class="main-section">
+                    <h:form id="frmMain" class="container">
+
+                        <div class="row">
+                            <div  class="col-md-12">
+                                <h2>VAI FICAR IMAGINANDO SUAS FÉRIAS?!</h2>
+                                <p>
+                                    <h:commandLink value="template_main"
+                                                   action="/templates/template_main.xhtml"/>
+                                    <br/>
+                                    
+                                    <h:commandLink value="login"
+                                                   action="/login.xhtml"/>
+                                    
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row row-centered">
+                            <div class="col-md-4 col-centered">
+                                <h2>
+                                    <h:commandButton value="QUERO APROVEITAR TUDO ISSO"
+                                                     class="btn btn-success btn-lg btn-block responsive-width btn-aproveitar-main"/>
+                                </h2>
+                            </div>
+                        </div>
+                    </h:form>
+                </section>
+
+                <section id="about" class="about-section">
+                    <h:form id="frmAbout" class="container">
+                        <div class="page-header">
+                            <h1>Arcadia<br/><br/>
+                                <small class="fugere-txt">
+                                    Neste lugar imaginado reina a felicidade, a 
+                                    simplicidade e a paz em um ambiente idílico 
+                                    habitado por uma população de pastores que 
+                                    vivem em comunhão com a natureza, como na 
+                                    lenda do nobre salvagem. <i>Fugere Urbem!</i>
+                                </small>
+                            </h1>
+                        </div>
+                    </h:form>
+                </section>
+
+            </ui:define>
+
+        </ui:composition>
     </h:body>
 </html>
-
