@@ -6,7 +6,7 @@
 
     <body>
 
-        <ui:composition template="./templates/template_default.xhtml">
+        <ui:composition template="../templates/template_default.xhtml">
 
             <ui:define name="titulo_pagina">
                 
@@ -21,16 +21,13 @@
             <ui:define name="hcontrol_00">
                 <h:commandButton value="LOGOUT"
                                  class="btn btn-default btn-hcontrol"
-                                 action="#{usuarioBean.sessaoUsuarioAuth.logout}"/>
-            </ui:define>
-
-            <ui:define name="hcontrol_01">
-                
+                                 action="#{usuarioBean.sessaoUsuarioAuth.logout}"
+                                 rendered="#{usuarioBean.authUser}"/>
             </ui:define>
 
             <ui:define name="main_sections">
                 
-                <ui:include src="proprietario_section.xhtml"/>
+                <ui:include src="../usuarios/proprietario/proprietario_section.xhtml"/>
             </ui:define>
 
         </ui:composition>

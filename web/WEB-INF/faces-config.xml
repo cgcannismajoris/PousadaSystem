@@ -6,19 +6,40 @@
     <navigation-rule>
         <from-view-id>/login.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>sucesso_login</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>falha_login</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
         </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/templates/template_default.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>sucesso_login</from-outcome>
-            <to-view-id>/usuario.xhtml</to-view-id>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/usuarios/usuario/usuario.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/mycontrolpanel/mycontrolpanel.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/login.xhtml</to-view-id>
+            <from-outcome>mycontrolpanel</from-outcome>
+            <to-view-id>/mycontrolpanel/mycontrolpanel.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

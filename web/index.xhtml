@@ -21,8 +21,15 @@
                 <h:commandButton value="QUERO ME HOSPEDAR"
                                  class="btn btn-success btn-hcontrol"/>
             </ui:define>
-
+            
             <ui:define name="hcontrol_01">
+                <h:commandButton value="MY CONTROL PANEL"
+                                 class="btn btn-mycp btn-hcontrol"
+                                 rendered="#{usuarioBean.authUser}"
+                                 action="mycontrolpanel"/>
+            </ui:define>
+
+            <ui:define name="hcontrol_02">
                 <h:commandButton value="LOGIN"
                                  class="btn btn-primary btn-hcontrol"
                                  rendered="#{not usuarioBean.authUser}"
@@ -49,7 +56,7 @@
                                     <br/>
                                     
                                     <h:commandLink value="usuario"
-                                                   action="/usuario.xhtml"/>
+                                                   action="/usuarios/usuario/usuario.xhtml"/>
                                 </p>
                             </div>
                         </div>

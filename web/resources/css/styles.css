@@ -50,6 +50,25 @@
     font-size: 21px;
 }
 
+.btn-mycp
+{
+    background: #8300cc;
+    color: #ffffff;
+}
+ 
+.btn-mycp:hover, .btn-mycp:focus, .btn-mycp:active, 
+.btn-mycp.active, .open > .dropdown-toggle.btn-mycp 
+{
+    background: #9c33ff;
+    color: #ffffff;
+}
+ 
+.btn-mycp:active, .btn-mycp.active 
+{
+    background: #3f007c;
+    box-shadow: none;
+}
+
 /******************************************************************************/
 
 .main_intro
