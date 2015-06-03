@@ -26,7 +26,7 @@
                 <h:commandButton value="MY CONTROL PANEL"
                                  class="btn btn-mycp btn-hcontrol"
                                  rendered="#{usuarioBean.authUser}"
-                                 action="mycontrolpanel"/>
+                                 action="#{usuarioBean.goMyCP}"/>
             </ui:define>
 
             <ui:define name="hcontrol_02">
@@ -54,9 +54,6 @@
                                     <h:commandLink value="template_default"
                                                    action="/templates/template_default.xhtml"/>
                                     <br/>
-                                    
-                                    <h:commandLink value="usuario"
-                                                   action="/usuarios/usuario/usuario.xhtml"/>
                                 </p>
                             </div>
                         </div>

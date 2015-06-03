@@ -78,3 +78,10 @@ html
     text-align: center;
     background: #e3e3e3;
 }
+
+.default-section
+{
+    height: 100%;
+    background: #eee;
+    margin-top: -20px;
+}

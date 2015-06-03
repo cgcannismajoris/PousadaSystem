@@ -25,7 +25,15 @@ public class ManageBeanUsuario
     @ManagedProperty(value="#{ beanSessaoUsuarioAuth }")
     private SessaoUsuarioAuth sessaoUsuarioAuth;
     
+    // Estilo de navbar (fixed-top ou static-top)
+    private String navbarType;
+    
     private static boolean authUser;       // usuário autenticado ou não
+
+    public ManageBeanUsuario()
+    {
+        navbarType = "fixed";
+    }
     
     public void obterDadosProprietario(AjaxBehaviorEvent event)
     {
@@ -35,7 +43,6 @@ public class ManageBeanUsuario
     
     public String logar()
     {
-        String navegacao;
         Pessoa pessoa = UsuarioDAO.autenticarUsuario(visitante);
         
         if (pessoa != null)
@@ -63,6 +70,13 @@ public class ManageBeanUsuario
         }
         
         return UsuarioDAO.FALHA_LOGIN;
+    }
+    
+    public String goMyCP()
+    {
+        this.navbarType = "static";
+        
+        return "mycontrolpanel";
     }
 
     public Visitante getVisitante()
@@ -95,5 +109,14 @@ public class ManageBeanUsuario
     {
         authUser = autenticacao;
     }
-    
+
+    public String getNavbarType()
+    {
+        return navbarType;
+    }
+
+    public void setNavbarType(String navbarType)
+    {
+        this.navbarType = navbarType;
+    }
 }
