@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -13,33 +15,70 @@
 
     <body>
 
-        <ui:composition template="./templates/template_main.xhtml">
+        <ui:composition template="./templates/template_default.xhtml">
+
+            <ui:define name="titulo_pagina">
+                Login
+            </ui:define>
 
             <ui:define name="hcentral">
 
             </ui:define>
 
+            <!-- BOTÕES PARA AJUDAR NA DEPURAÇÃO -->
+
             <ui:define name="hcontrol_00">
+
+                <!-- Renderize sem atualizar inteiramente a página -->
+                <h:commandButton id="btnProprietario"
+
+                                 value="Proprietário?"
+                                 class="btn btn-warning btn-hcontrol">
+                    <f:ajax listener="#{usuarioBean.obterDadosProprietario}"
+                            render=":main :frmLogin:login :frmLogin:senha"/>
+                </h:commandButton>
 
             </ui:define>
 
             <ui:define name="hcontrol_01">
-
+                <h:commandButton value="Admin?"
+                                 class="btn btn-success btn-hcontrol"/>
             </ui:define>
 
             <ui:define name="main_sections">
 
                 <section id="main" class="main-section">
                     <div class="container">
-                        <h:form class="form-signin frmLogin img-rounded col-sm-4 col-centered">
+                        <h:form id="frmLogin"
+                                class="form-signin frmLogin img-rounded col-sm-4 col-centered">
                             <h2 class="form-signin-heading text-center">Login</h2>
-                            
-                            <label for="inputEmail" class="sr-only">Endereço de Email</label>
-                            <input type="email" id="inputEmail" class="form-control input-frmLogin"/>
-                            
-                            <label for="inputPassword" class="sr-only">Password</label>
-                            <input type="password" id="inputPassword" class="form-control input-frmLogin"/>
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+
+                            <!-- Entrada para nome de usuário -->
+                            <h:inputText id="login"
+                                         pt:placeholder="Nome de Usuário"
+                                         value="#{usuarioBean.visitante.login}"
+                                         class="form-control input-frmLogin"
+                                         required="true"
+                                         requiredMessage="Campo obrigatório.">
+
+                            </h:inputText>
+
+
+                            <!-- Entrada para senha de usuário -->
+                            <h:inputText id="senha"
+                                         pt:placeholder="Senha"
+                                         value="#{usuarioBean.visitante.senha}"
+                                         class="form-control input-frmLogin"/>
+
+                            <!-- Botão para Login -->
+                            <h:commandButton value="Entrar"
+                                             class="btn btn-lg btn-primary btn-block"
+                                             action="#{usuarioBean.logar()}"/>
+
+                            <hr/>
+                            <h:messages class="alert alert-danger">
+                            </h:messages>
+
                         </h:form>
                     </div>
                 </section>

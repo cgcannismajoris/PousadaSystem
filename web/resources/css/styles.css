@@ -41,9 +41,8 @@
     
     .fugere-txt
     {
-        font-size: 20px;
+        font-size: 16px;
     }
-    
 }
 /******************************************************************************/
 
@@ -62,7 +61,7 @@
     margin-top: 330px;
 }
 
-@media screen and (max-width: 768px), screen and (max-height: 625px)
+@media screen and (max-width: 768px), screen and (max-height: 672px)
 { 
     .responsive-width 
     {

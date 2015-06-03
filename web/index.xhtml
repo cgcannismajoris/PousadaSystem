@@ -9,7 +9,7 @@
     </h:head>
 
     <h:body>
-        <ui:composition template="./templates/template_main.xhtml">
+        <ui:composition template="./templates/template_default.xhtml">
             
             <ui:define name="titulo_pagina">
                 Pousada Arcadia
@@ -26,7 +26,9 @@
 
             <ui:define name="hcontrol_01">
                 <h:commandButton value="LOGIN"
-                                 class="btn btn-primary btn-hcontrol"/>
+                                 class="btn btn-primary btn-hcontrol"
+                                 rendered="#{not usuarioBean.authUser}"
+                                 action="login"/>
             </ui:define>
 
             <ui:define name="main_sections">
@@ -39,13 +41,9 @@
                             <div  class="col-md-12">
                                 <h2>VAI FICAR IMAGINANDO SUAS FÉRIAS?!</h2>
                                 <p>
-                                    <h:commandLink value="template_main"
-                                                   action="/templates/template_main.xhtml"/>
+                                    <h:commandLink value="template_default"
+                                                   action="/templates/template_default.xhtml"/>
                                     <br/>
-                                    
-                                    <h:commandLink value="login"
-                                                   action="/login.xhtml"/>
-                                    
                                 </p>
                             </div>
                         </div>
