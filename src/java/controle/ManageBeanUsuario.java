@@ -25,7 +25,7 @@ public class ManageBeanUsuario
     @ManagedProperty(value="#{ beanSessaoUsuarioAuth }")
     private SessaoUsuarioAuth sessaoUsuarioAuth;
     
-    private boolean authUser;       // usuário autenticado ou não
+    private static boolean authUser;       // usuário autenticado ou não
     
     public void obterDadosProprietario(AjaxBehaviorEvent event)
     {
@@ -44,6 +44,8 @@ public class ManageBeanUsuario
             this.sessaoUsuarioAuth.setPessoa(pessoa);
             this.sessaoUsuarioAuth.setTempo(new GregorianCalendar().getTime());
             
+            // Indicar que o usuário foi autenticado
+            authUser = true;
             
             return UsuarioDAO.SUCESSO_LOGIN;
         } else
@@ -89,9 +91,9 @@ public class ManageBeanUsuario
         return authUser;
     }
 
-    public void setAuthUser(boolean authUser)
+    public static void setAuthUser(boolean autenticacao)
     {
-        this.authUser = authUser;
+        authUser = autenticacao;
     }
     
 }

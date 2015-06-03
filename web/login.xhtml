@@ -59,7 +59,7 @@
                                          value="#{usuarioBean.visitante.login}"
                                          class="form-control input-frmLogin"
                                          required="true"
-                                         requiredMessage="Campo obrigatório.">
+                                         requiredMessage="Nome: Campo obrigatório.">
 
                             </h:inputText>
 
@@ -68,14 +68,17 @@
                             <h:inputText id="senha"
                                          pt:placeholder="Senha"
                                          value="#{usuarioBean.visitante.senha}"
-                                         class="form-control input-frmLogin"/>
+                                         class="form-control input-frmLogin"
+                                         required="true"
+                                         requiredMessage="Senha: Campo obrigatório."/>
 
                             <!-- Botão para Login -->
                             <h:commandButton value="Entrar"
                                              class="btn btn-lg btn-primary btn-block"
                                              action="#{usuarioBean.logar()}"/>
-
+                            
                             <hr/>
+
                             <h:messages class="alert alert-danger">
                             </h:messages>
 
