@@ -8,6 +8,7 @@
         <navigation-case>
             <from-outcome>sucesso_login</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>falha_login</from-outcome>
@@ -22,17 +23,11 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/usuarios/usuario/usuario.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>index</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
         <from-view-id>/mycontrolpanel/mycontrolpanel.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -40,6 +35,21 @@
         <navigation-case>
             <from-outcome>mycontrolpanel</from-outcome>
             <to-view-id>/mycontrolpanel/mycontrolpanel.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
+    
+    <lifecycle>
+        <phase-listener>listeners.UserAuthListener</phase-listener>
+    </lifecycle>
 </faces-config>

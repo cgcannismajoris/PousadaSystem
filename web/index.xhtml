@@ -13,8 +13,8 @@
 
             <ui:define name="hcentral">
                 <h:commandLink class="hcentral-user-name"
-                               value="Bem-vindo, #{usuarioBean.sessaoUsuarioAuth.pessoa.nome}."
-                               rendered="#{usuarioBean.authUser}"/>
+                               value="Bem-vindo, #{sessaoUsuario.usuarioAuth.pessoa.nome}."
+                               rendered="#{not empty sessaoUsuario.usuarioAuth}"/>
             </ui:define>
 
             <ui:define name="hcontrol_00">
@@ -25,20 +25,20 @@
             <ui:define name="hcontrol_01">
                 <h:commandButton value="MY CONTROL PANEL"
                                  class="btn btn-mycp btn-hcontrol"
-                                 rendered="#{usuarioBean.authUser}"
-                                 action="#{usuarioBean.goMyCP}"/>
+                                 rendered="#{not empty sessaoUsuario.usuarioAuth}"
+                                 action="mycontrolpanel"/>
             </ui:define>
 
             <ui:define name="hcontrol_02">
                 <h:commandButton value="LOGIN"
                                  class="btn btn-primary btn-hcontrol"
-                                 rendered="#{not usuarioBean.authUser}"
-                                 action="login"/>
+                                 action="login"
+                                 rendered="#{empty sessaoUsuario.usuarioAuth}"/>
                 
                 <h:commandButton value="LOGOUT"
                                  class="btn btn-default btn-hcontrol"
-                                 action="#{usuarioBean.sessaoUsuarioAuth.logout}"
-                                 rendered="#{usuarioBean.authUser}"/>
+                                 action="#{sessaoUsuario.logout()}"
+                                 rendered="#{not empty sessaoUsuario.usuarioAuth}"/>
             </ui:define>
 
             <ui:define name="main_sections">

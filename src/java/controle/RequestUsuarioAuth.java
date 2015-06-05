@@ -3,14 +3,13 @@ package controle;
 import factories.PessoaFactory;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.RequestScoped;
 import modelo.Pessoa;
 
 // Classe de Sessão de Usuário Autenticado
-@ManagedBean(name = "beanSessaoUsuarioAuth")
-@SessionScoped
-public class SessaoUsuarioAuth
+@ManagedBean(name = "requestUsuarioAuth")
+@RequestScoped
+public class RequestUsuarioAuth
 {
     // Incluir Bean de Pessoa para preenchimento
     private Pessoa pessoa;
@@ -18,7 +17,6 @@ public class SessaoUsuarioAuth
     private Date tempo;                 // data de seção
     private String tipoUsuarioSection;  // seção do tipo de usuário
 
-    
     public Pessoa getPessoa()
     {
         return pessoa;
@@ -27,6 +25,8 @@ public class SessaoUsuarioAuth
     public void setPessoa(Pessoa pessoa)
     {
         this.pessoa = pessoa;
+        
+        if (pessoa == null) return;
         
         switch (pessoa.getPrivilegio())
         {
@@ -56,17 +56,6 @@ public class SessaoUsuarioAuth
     public void setTempo(Date tempo)
     {
         this.tempo = tempo;
-    }
-    
-    // Método para Logout
-    public String logout()
-    {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        
-        // Indicar que o usuário não está mais autenticado
-        ManageBeanUsuario.setAuthUser(false);
-        
-        return "/index.xhtml?faces-redirect=true";
     }
 
     public String getTipoUsuarioSection()

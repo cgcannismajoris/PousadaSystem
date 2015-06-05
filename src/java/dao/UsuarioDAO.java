@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import factories.PessoaFactory;
@@ -13,7 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Pessoa;
-import modelo.Visitante;
+import controle.RequestVisitante;
 import tools.GerenciadorDB;
 
 // ESSA CLASSE PODE SER UM FACTORY METHOD
@@ -25,7 +20,7 @@ public class UsuarioDAO
     private static Connection con = null;
 
     @SuppressWarnings("null")
-    public static Pessoa autenticarUsuario(Visitante visitante)
+    public static Pessoa autenticarUsuario(RequestVisitante visitante)
     {
         Pessoa pessoaLida = null;
 

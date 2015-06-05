@@ -9,26 +9,24 @@
         <ui:composition template="../templates/template_default.xhtml">
 
             <ui:define name="titulo_pagina">
-
+                MyControlPanel
             </ui:define>
 
             <ui:define name="hcentral">
                 <h:commandLink class="hcentral-user-name"
-                               value="Bem-vindo, #{usuarioBean.sessaoUsuarioAuth.pessoa.nome}."
-                               rendered="#{usuarioBean.authUser}"/>
+                               value="Bem-vindo, #{sessaoUsuario.usuarioAuth.pessoa.nome}."/>
             </ui:define>
 
             <ui:define name="hcontrol_00">
                 <h:commandButton value="LOGOUT"
                                  class="btn btn-default btn-hcontrol"
-                                 action="#{usuarioBean.sessaoUsuarioAuth.logout}"
-                                 rendered="#{usuarioBean.authUser}"/>
+                                 action="#{sessaoUsuario.logout()}"/>
             </ui:define>
 
             <ui:define name="main_sections">
-
+                
                 <!-- INCLUIR SEÇÕES DE ACORDO COM O USUÁRIO LOGADO -->
-                <ui:include src="../usuarios/#{usuarioBean.sessaoUsuarioAuth.tipoUsuarioSection}.xhtml"/>
+                <ui:include src="../usuarios/#{sessaoUsuario.usuarioAuth.tipoUsuarioSection}.xhtml"/>
                 
             </ui:define>
 

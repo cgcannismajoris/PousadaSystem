@@ -34,7 +34,7 @@
 
                                  value="Proprietário?"
                                  class="btn btn-warning btn-hcontrol">
-                    <f:ajax listener="#{usuarioBean.obterDadosProprietario}"
+                    <f:ajax listener="#{sessaoUsuario.obterDadosProprietario}"
                             render=":main :frmLogin:login :frmLogin:senha"/>
                 </h:commandButton>
 
@@ -56,7 +56,7 @@
                             <!-- Entrada para nome de usuário -->
                             <h:inputText id="login"
                                          pt:placeholder="Nome de Usuário"
-                                         value="#{usuarioBean.visitante.login}"
+                                         value="#{sessaoUsuario.visitante.login}"
                                          class="form-control input-frmLogin"
                                          required="true"
                                          requiredMessage="Nome: Campo obrigatório.">
@@ -67,7 +67,7 @@
                             <!-- Entrada para senha de usuário -->
                             <h:inputText id="senha"
                                          pt:placeholder="Senha"
-                                         value="#{usuarioBean.visitante.senha}"
+                                         value="#{sessaoUsuario.visitante.senha}"
                                          class="form-control input-frmLogin"
                                          required="true"
                                          requiredMessage="Senha: Campo obrigatório."/>
@@ -75,7 +75,7 @@
                             <!-- Botão para Login -->
                             <h:commandButton value="Entrar"
                                              class="btn btn-lg btn-primary btn-block"
-                                             action="#{usuarioBean.logar()}"/>
+                                             action="#{sessaoUsuario.logar()}"/>
                             
                             <hr/>
 
