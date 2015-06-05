@@ -130,6 +130,15 @@
     padding-bottom: 20px;
 }
 
+.frmCadAdmin
+{
+    background-color: #f8f8f8;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 35px;
+    padding-top: 0px;
+}
+
 .input-frmLogin
 {
     margin-bottom: 5px;

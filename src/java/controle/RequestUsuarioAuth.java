@@ -3,16 +3,21 @@ package controle;
 import factories.PessoaFactory;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import modelo.Pessoa;
+import modelo.Proprietario;
 
-// Classe de Sessão de Usuário Autenticado
+// MB de Usuário Autenticado
 @ManagedBean(name = "requestUsuarioAuth")
 @RequestScoped
 public class RequestUsuarioAuth
 {
     // Incluir Bean de Pessoa para preenchimento
     private Pessoa pessoa;
+    
+    // Bean de Proprietário (só existirá 1)
+    private ManageBeanProprietario proprietarioMB;
     
     private Date tempo;                 // data de seção
     private String tipoUsuarioSection;  // seção do tipo de usuário
@@ -32,6 +37,10 @@ public class RequestUsuarioAuth
         {
             case PessoaFactory.PROPRIETARIO:
             {
+                // Instanciar MB de proprietário
+                this.proprietarioMB = new ManageBeanProprietario();
+                this.proprietarioMB.setProprietario((Proprietario)pessoa);
+                
                 this.tipoUsuarioSection = "proprietario/proprietario_section";
             } break;
                 
@@ -61,5 +70,15 @@ public class RequestUsuarioAuth
     public String getTipoUsuarioSection()
     {
         return tipoUsuarioSection;
+    }
+
+    public ManageBeanProprietario getProprietarioMB()
+    {
+        return proprietarioMB;
+    }
+
+    public void setProprietarioMB(ManageBeanProprietario proprietarioMB)
+    {
+        this.proprietarioMB = proprietarioMB;
     }
 }

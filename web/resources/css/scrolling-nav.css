@@ -79,6 +79,15 @@ html
     background: #e3e3e3;
 }
 
+.proprietario-section
+{
+    height: 110%;
+    padding-top: 50px;
+    text-align: center;
+    background:  #8300cc;
+    margin-top: -40px;
+}
+
 .default-section
 {
     height: 100%;
