@@ -26,6 +26,7 @@ public class SessaoUsuario
 
     public SessaoUsuario()
     {
+        navbarType = "fixed";
     }
     
     public void obterDadosProprietario(AjaxBehaviorEvent event)
