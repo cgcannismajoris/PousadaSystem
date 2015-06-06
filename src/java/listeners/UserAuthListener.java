@@ -3,6 +3,7 @@ package listeners;
 import controle.SessaoUsuario;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
@@ -55,10 +56,19 @@ public class UserAuthListener implements PhaseListener
             {
                 SessaoUsuario.navbarType = "static";
 
+                // Caso não exista usuário autenticado
                 if (sessaoUsuario.getUsuarioAuth() == null)
                 {
                     NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
                     nh.handleNavigation(facesContext, null, "index");
+                } else // Caso exista usuário autenticado
+                {
+                    // Caso proprietário esteja autenticado
+                    if (sessaoUsuario.getUsuarioAuth().getProprietarioMB() != null)
+                    {
+                        // Verifica se exista administrador cadastrado
+                        sessaoUsuario.getUsuarioAuth().getProprietarioMB().verificaExistAdmin();
+                    }
                 }
             }
 

@@ -2,10 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <!-- PROCESSO DE CADASTRO DE ADMINISTRADOR -->
-    <div class="container frmCadAdmin img-rounded col-md-5 col-centered loading">
+    <div class="container frmCadAdmin img-rounded col-md-5 col-centered 
+         #{sessaoUsuario.usuarioAuth.proprietarioMB.loadingFlag}">
 
         <div class="row row-centered">
             <h3>Cadastro de Administrador</h3>
@@ -20,7 +22,7 @@
                 </div>
 
 
-                <div class="col-xs-6 bs-wizard-step disabled">
+                <div class="col-xs-6 bs-wizard-step #{sessaoUsuario.usuarioAuth.proprietarioMB.bsWizardStep2Flag}">
                     <div class="text-center bs-wizard-stepnum">Concluído</div>
                     <div class="progress"><div class="progress-bar"/></div>
                     <h:commandLink class="bs-wizard-dot"/>
@@ -31,21 +33,44 @@
             <hr/>
         </div>
 
-        <!-- FORMULÁRIO DE PREENCHIMENTO DE DADOS -->
-        <div class="row">
+        <h:form id="frmCadAdminStep1" 
+                rendered="#{not sessaoUsuario.usuarioAuth.proprietarioMB.cadAdminCompleto}">
+            <div class="row">
+                <h:messages class="alert alert-danger"/>
 
-            <ui:include src="../../formularios/input_pessoa.xhtml">
-                <ui:param name="inputNome" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.nome}"/>
-                <ui:param name="inputEndereco" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.endereco}"/>
-                <ui:param name="inputLogin" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.login}"/>
-                <ui:param name="inputSenha" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.senha}"/>
-            </ui:include>
-            <hr/>
-            <h:commandButton value="PROSSEGUIR"
-                             class="col-xs-12 btn btn-success loading"
+                <!-- FORMULÁRIO DE PREENCHIMENTO DE DADOS DE PESSOA -->
+                <ui:include src="../../formularios/input_pessoa.xhtml">
+                    <ui:param name="inputNome" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.nome}"/>
+                    <ui:param name="inputEndereco" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.endereco}"/>
+                    <ui:param name="inputDataNascimento" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.dataNascimento}"/>
+                    <ui:param name="inputLogin" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.login}"/>
+                    <ui:param name="inputSenha" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.senha}"/>
+                </ui:include>
+                <hr/>
+
+                <h:commandButton id="btnProsseguir"
+                                 value="PROSSEGUIR"
+                                 class="col-xs-12 btn btn-success loading"
+                                 action="#{sessaoUsuario.usuarioAuth.proprietarioMB.completarCadastroAdmin()}">
+                    
+                </h:commandButton>
+            </div>
+
+        </h:form>
+
+        <h:form id="frmCadAdminComcluido" 
+                rendered="#{sessaoUsuario.usuarioAuth.proprietarioMB.cadAdminCompleto}">
+            <div class="row row-centered">
+                
+                <h4>CADASTRO REALIZADO COM SUCESSO!</h4>
+                <small style="font-size: 14px;">O cadastro de Administrador foi feito corretamente.</small>
+                <hr/>
+                <h:commandButton class="btn btn-default btn-mycp"
+                             value="ME TIRA DAQUI!"
                              action="index"/>
-        </div>
-    </div>
+            </div>
+        </h:form>
 
+    </div>
 </html>
 
