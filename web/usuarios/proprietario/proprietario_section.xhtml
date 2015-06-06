@@ -15,9 +15,11 @@
     </h:head>
 
     <section id="proprietario-section" class="proprietario-section">
-        <!-- Verificar se o proprietário já cadastrou o administrador -->
-        <ui:include src="proprietario_cadAdmin.xhtml" 
-                    rendered="#{sessaoUsuario.usuarioAuth.proprietarioMB.existeAdmin()}"/>
+        
+        <!--Formulário abaixo será exibido caso exista administrador -->
+        <h:form id="frmCadAdmin" rendered="#{not sessaoUsuario.usuarioAuth.proprietarioMB.existeAdmin()}">
+            <ui:include src="proprietario_cadAdmin.xhtml"/>
+        </h:form>
         
     </section>
 </html>

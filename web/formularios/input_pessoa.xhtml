@@ -6,73 +6,69 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:composition>
-        
-        <h:form id="#{idFrm}" rendered="#{boolRendered}">
-            
-            <!-- Nome -->
-            <div class="row">
-                <h:outputLabel value="Nome" for="nome" class="col-xs-2"/>
-                <div class="row-centered">
-                    <div class="col-xs-12 col-centered form-group">
-                        <h:inputText id="nome" class="form-control" 
-                                     pt:placeholder="Ex.: João Cândido Porta-Retrato"
-                                     value="#{inputNome}"/>
-                    </div>
+        <!-- Nome -->
+        <div class="row">
+            <h:outputLabel value="Nome" for="nome" class="col-xs-2"/>
+            <div class="row-centered">
+                <div class="col-xs-12 col-centered form-group">
+                    <h:inputText id="nome" class="form-control" 
+                                 pt:placeholder="Ex.: João Cândido Porta-Retrato"
+                                 value="#{inputNome}"/>
                 </div>
+            </div>
+        </div>
+
+        <!-- Endereço -->
+        <div class="row">
+            <h:outputLabel value="Endereço" for="endereco" class="col-xs-2"/>
+            <div class="row-centered">
+                <div class="col-xs-12 col-centered form-group">
+                    <h:inputText id="endereco" class="form-control" 
+                                 pt:placeholder="Ex.: Rua Gastão Costa, 320, Bairro Mococa, Cidade Naval"
+                                 value="#{inputEndereco}"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data de Nascimento -->
+        <div class="row">
+            <div class="col-xs-6">
+                <h:outputLabel value="Data de Nascimento" for="dataNascimento"/>
             </div>
 
-            <!-- Endereço -->
-            <div class="row">
-                <h:outputLabel value="Endereço" for="endereco" class="col-xs-2"/>
-                <div class="row-centered">
-                    <div class="col-xs-12 col-centered form-group">
-                        <h:inputText id="endereco" class="form-control" 
-                                     pt:placeholder="Ex.: Rua Gastão Costa, 320, Bairro Mococa, Cidade Naval"
-                                     value="#{inputEndereco}"/>
-                    </div>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h:inputText id="dataNascimento" class="form-control" 
+                             pt:placeholder="Ex.: 10/12/1980 (Dia/Mês/Ano)"
+                             value="#{inputDataNascimento}"/>
             </div>
+        </div>
+        <br/>
 
-            <!-- Data de Nascimento -->
-            <div class="row">
-                <div class="col-xs-6">
-                    <h:outputLabel value="Data de Nascimento" for="dataNascimento"/>
-                </div>
+        <!-- Login e Senha -->
+        <div class="row">
+            <div class="col-xs-6">
+                <h:outputLabel value="Login" for="login"/>
+            </div>
+            <div class="col-xs-6">
+                <h:outputLabel value="Senha" for="senha"/>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-xs-6">
+                <h:inputText id="login" class="form-control" 
+                             pt:placeholder="Ex.: joaocandidodemais"
+                             value="#{inputLogin}"/>
             </div>
-            <div class="row">
-                <div class="col-xs-6">
-                    <h:inputText id="dataNascimento" class="form-control" 
-                                 pt:placeholder="Ex.: 10/12/1980 (Dia/Mês/Ano)"
-                                 value="#{inputDataNascimento}"/>
-                </div>
+            <div class="col-xs-6">
+                <h:inputText id="senha" class="form-control" 
+                             pt:placeholder="Ex.: jojodoido"
+                             value="#{inputSenha}"/>
             </div>
-            <br/>
-            
-            <!-- Login e Senha -->
-            <div class="row">
-                <div class="col-xs-6">
-                    <h:outputLabel value="Login" for="login"/>
-                </div>
-                <div class="col-xs-6">
-                    <h:outputLabel value="Senha" for="senha"/>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-6">
-                    <h:inputText id="login" class="form-control" 
-                                 pt:placeholder="Ex.: joaocandidodemais"
-                                 value="#{inputLogin}"/>
-                </div>
-                <div class="col-xs-6">
-                    <h:inputText id="senha" class="form-control" 
-                                 pt:placeholder="Ex.: jojodoido"
-                                 value="#{inputSenha}"/>
-                </div>
-            </div>
-        </h:form>
-        
+        </div>
     </ui:composition>
+
 </html>
 
