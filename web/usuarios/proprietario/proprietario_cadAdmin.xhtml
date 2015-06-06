@@ -9,7 +9,7 @@
 
         <h:form id="frmCadAdmin">
             <div class="row">
-                <h:form id="frmCadAdminHeader">
+
 
                     <div class="row-centered">
                         <h3>Cadastro de Administrador</h3>
@@ -34,30 +34,29 @@
 
                         <hr/>
                     </div>
-                </h:form>
+
             </div>
 
             <!-- FORMULÁRIO DE PREENCHIMENTO DE DADOS -->
             <div class="row">
-                <h:form id="frmCadAdminBody">
+
                     <ui:include src="../../formularios/input_pessoa.xhtml">
                         <ui:param name="idFrm" value="frmDataAdmin"/>
                         <ui:param name="boolRendered" value="true"/>
-                        <ui:param name="inputNome" value="#{sessaoUsuario.usuarioAuth.pessoa.nome}"/>
-                        <ui:param name="inputEndereco" value="#{sessaoUsuario.usuarioAuth.pessoa.endereco}"/>
-                        <ui:param name="inputDataNascimento" value="#{sessaoUsuario.usuarioAuth.pessoa.dataNascimento}"/>
-                        <ui:param name="inputLogin" value="#{sessaoUsuario.usuarioAuth.pessoa.login}"/>
-                        <ui:param name="inputSenha" value="123"/>
+                        <ui:param name="inputNome" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.nome}"/>
+                        <ui:param name="inputEndereco" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.endereco}"/>
+                        <ui:param name="inputDataNascimento" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.dataNascimento}"/>
+                        <ui:param name="inputLogin" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.login}"/>
+                        <ui:param name="inputSenha" value="#{sessaoUsuario.usuarioAuth.proprietarioMB.tmpAdministrador.senha}"/>
                     </ui:include>
-                </h:form>
+                <h:commandButton value="PROSSEGUIR"
+                                 class="col-xs-12 btn btn-success loading"
+                                 action="/index.xhtml"/>
             </div>
 
             <hr/>
 
-            <div class="row">
-                <h:commandButton value="PROSSEGUIR"
-                                 class="col-xs-12 btn btn-success loading"/>
-            </div>
+
         </h:form>
     </div>
 
