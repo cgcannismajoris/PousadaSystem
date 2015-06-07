@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- INCLUIR CSSs PERSONALIZADOS -->
+        <h:outputStylesheet library="css" name="sigin.css"/>
+    </head>
+
+    <body>
+
+        <ui:composition template="./templates/template_default.xhtml">
+
+            <ui:define name="titulo_pagina">
+                Login
+            </ui:define>
+
+            <ui:define name="hcentral">
+
+            </ui:define>
+
+            <!-- BOTÕES PARA AJUDAR NA DEPURAÇÃO -->
+
+            <ui:define name="hcontrol_00">
+
+                <!-- Renderize sem atualizar inteiramente a página -->
+                <h:commandButton id="btnProprietario"
+
+                                 value="Proprietário?"
+                                 class="btn btn-warning btn-hcontrol">
+                    <f:ajax listener="#{sessaoUsuario.obterDadosProprietario}"
+                            render=":main :frmLogin:login :frmLogin:senha"/>
+                </h:commandButton>
+
+            </ui:define>
+
+            <ui:define name="hcontrol_01">
+                <h:commandButton value="Admin?"
+                                 class="btn btn-success btn-hcontrol"/>
+            </ui:define>
+
+            <ui:define name="main_sections">
+
+                <section id="main" class="main-section">
+                    <div class="container">
+                        <h:form id="frmLogin"
+                                class="form-signin frmLogin img-rounded col-sm-4 col-centered">
+                            <h2 class="form-signin-heading text-center">Login</h2>
+
+                            <!-- Entrada para nome de usuário -->
+                            <h:inputText id="login"
+                                         pt:placeholder="Nome de Usuário"
+                                         value="#{sessaoUsuario.visitante.login}"
+                                         class="form-control input-frmLogin"
+                                         required="true"
+                                         requiredMessage="Nome: Campo obrigatório.">
+
+                            </h:inputText>
+
+
+                            <!-- Entrada para senha de usuário -->
+                            <h:inputText id="senha"
+                                         pt:placeholder="Senha"
+                                         value="#{sessaoUsuario.visitante.senha}"
+                                         class="form-control input-frmLogin"
+                                         required="true"
+                                         requiredMessage="Senha: Campo obrigatório."/>
+
+                            <!-- Botão para Login -->
+                            <h:commandButton value="Entrar"
+                                             class="btn btn-lg btn-primary btn-block"
+                                             action="#{sessaoUsuario.logar()}"/>
+                            
+                            <hr/>
+
+                            <h:messages class="alert alert-danger">
+                            </h:messages>
+
+                        </h:form>
+                    </div>
+                </section>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

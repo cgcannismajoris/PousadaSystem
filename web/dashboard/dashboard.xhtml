@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="../templates/template_default.xhtml">
+
+            <ui:define name="titulo_pagina">
+                Dashboard
+            </ui:define>
+
+            <ui:define name="hcentral">
+                <h:commandLink class="hcentral-user-name"
+                               value="Bem-vindo, #{sessaoUsuario.usuarioAuth.pessoa.nome}."/>
+            </ui:define>
+
+            <ui:define name="hcontrol_00">
+                <h:commandButton value="LOGOUT"
+                                 class="btn btn-default btn-hcontrol"
+                                 action="#{sessaoUsuario.logout()}"/>
+            </ui:define>
+
+            <ui:define name="main_sections">
+                
+                <!-- INCLUIR SEÇÕES DE ACORDO COM O USUÁRIO LOGADO -->
+                <ui:include src="../usuarios/#{sessaoUsuario.usuarioAuth.tipoUsuarioSection}.xhtml"/>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

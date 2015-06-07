@@ -1,0 +1,145 @@
+
+/**************************** ESTILOS PARA HEADER *****************************/
+@font-face
+{
+    font-family: 'ubuntuc';
+    src: url("#{resource['fonts:Ubuntu-C.ttf']}") format('truetype');
+}
+
+.arcadia-logo
+{
+    font-family: 'ubuntuc', sans-serif;
+    font-size: 32px;
+}
+
+.hcontrol
+{
+    margin-top: 8px;
+}
+
+.btn-hcontrol
+{
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) 
+{ 
+    div.collapsing
+    {
+        text-align: center;
+    }
+
+    div.collapse
+    {
+        text-align: center;
+    }
+
+    .btn-hcontrol
+    {
+        margin-top: 8px;
+    }
+    
+    .fugere-txt
+    {
+        font-size: 16px;
+    }
+}
+
+.hcentral-user-name
+{
+    font-size: 21px;
+}
+
+.btn-mycp
+{
+    background: #8300cc;
+    color: #ffffff;
+}
+ 
+.btn-mycp:hover, .btn-mycp:focus, .btn-mycp:active, 
+.btn-mycp.active, .open > .dropdown-toggle.btn-mycp 
+{
+    background: #51009d;
+    color: #ffffff;
+}
+ 
+.btn-mycp:active, .btn-mycp.active 
+{
+    background: #3f007c;
+    box-shadow: none;
+}
+
+/******************************************************************************/
+
+.main_intro
+{
+    margin-top: 250px;
+}
+
+.main_intro_section
+{
+    margin-top: -20px;
+}
+
+.btn-aproveitar-main
+{
+    margin-top: 330px;
+}
+
+@media screen and (max-width: 768px), screen and (max-height: 672px)
+{ 
+    .responsive-width 
+    {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .main_intro
+    {
+        margin-top: 100px;
+    }
+
+    .btn-aproveitar-main
+    {
+        margin-top: 100px;
+    }
+}
+
+.row-centered 
+{
+    text-align:center;
+}
+
+.col-centered 
+{
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+/******************************************************************************/
+
+.frmLogin
+{
+    background-color: #f8f8f8;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.frmCadAdmin, .frmPerfil
+{
+    background-color: #f8f8f8;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 35px;
+    padding-top: 0px;
+}
+
+.input-frmLogin
+{
+    margin-bottom: 5px;
+}

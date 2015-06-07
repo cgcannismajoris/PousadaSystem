@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+
+        <!-- CSSs loading animations -->
+        <h:outputStylesheet library="css" name="anime_load_state.css"/>
+
+        <!-- CSSs bs-wizard -->
+        <h:outputStylesheet library="css" name="bs-wizard.css"/>
+
+    </h:head>
+
+    <section id="proprietario-section" class="proprietario-section">
+
+        <!--Formulário abaixo será exibido caso exista administrador -->
+        <h:form id="frmPainelCad" class="form-horizontal"
+                rendered="#{not sessaoUsuario.usuarioAuth.proprietarioMB.existeAdmin}">
+            <ui:include src="proprietario_cadAdmin.xhtml"/>
+        </h:form>
+        
+        <!-- Perfil do Proprietário -->
+        <h:form id="frmPainelPerfil"
+                rendered="#{sessaoUsuario.usuarioAuth.proprietarioMB.existeAdmin}">
+            <ui:include src="proprietario_perfil.xhtml"/>
+        </h:form>
+
+    </section>
+</html>
+
