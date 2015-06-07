@@ -23,22 +23,22 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/mycontrolpanel/mycontrolpanel.xhtml</from-view-id>
+        <from-view-id>/dashboard/dashboard.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>mycontrolpanel</from-outcome>
-            <to-view-id>/mycontrolpanel/mycontrolpanel.xhtml</to-view-id>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/dashboard/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>mycontrolpanel</from-outcome>
-            <to-view-id>/mycontrolpanel/mycontrolpanel.xhtml</to-view-id>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/dashboard/dashboard.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         <navigation-case>

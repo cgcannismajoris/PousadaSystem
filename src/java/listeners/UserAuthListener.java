@@ -3,7 +3,6 @@ package listeners;
 import controle.SessaoUsuario;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
@@ -19,7 +18,7 @@ public class UserAuthListener implements PhaseListener
         String currentPage = facesContext.getViewRoot().getViewId();
 
         boolean isLoginPage = (currentPage.lastIndexOf("login") > -1);
-        boolean isMyCP = (currentPage.lastIndexOf("mycontrolpanel") > -1);
+        boolean isDashboard = (currentPage.lastIndexOf("dashboard") > -1);
         boolean isIndexPage = (currentPage.lastIndexOf("index") > -1);
 
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
@@ -52,7 +51,7 @@ public class UserAuthListener implements PhaseListener
                 }
             }
 
-            if (isMyCP)
+            if (isDashboard)
             {
                 SessaoUsuario.navbarType = "static";
 

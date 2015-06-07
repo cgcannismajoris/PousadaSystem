@@ -3,7 +3,6 @@ package controle;
 import factories.PessoaFactory;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import modelo.Pessoa;
 import modelo.Proprietario;

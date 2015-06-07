@@ -6,8 +6,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionListener;
-import javax.faces.event.AjaxBehaviorEvent;
 import modelo.Administrador;
 import modelo.Pessoa;
 import modelo.Proprietario;
@@ -63,7 +61,7 @@ public class ManageBeanProprietario
                             "Falha ao salvar Administrador.", "Falha ao salvar Administrador no Banco de Dados."));
         }
 
-        return "mycontrolpanel";
+        return "dashboard";
     }
 
     // Salvar Administrador criado no BD
