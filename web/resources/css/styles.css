@@ -38,7 +38,7 @@
     {
         margin-top: 8px;
     }
-    
+
     .fugere-txt
     {
         font-size: 16px;
@@ -55,14 +55,14 @@
     background: #8300cc;
     color: #ffffff;
 }
- 
+
 .btn-mycp:hover, .btn-mycp:focus, .btn-mycp:active, 
 .btn-mycp.active, .open > .dropdown-toggle.btn-mycp 
 {
     background: #51009d;
     color: #ffffff;
 }
- 
+
 .btn-mycp:active, .btn-mycp.active 
 {
     background: #3f007c;
@@ -137,6 +137,22 @@
     padding-right: 35px;
     padding-bottom: 35px;
     padding-top: 0px;
+}
+
+@media screen and (max-width: 485px)
+{
+    .frmCadAdmin, .frmPerfil
+    {
+        background-color: #f8f8f8;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-bottom: 35px;
+        padding-top: 0px;
+        
+        // Pequenas correções de ajuste de margens
+        margin-left: 1px;
+        margin-right: 2px;
+    }
 }
 
 .input-frmLogin
