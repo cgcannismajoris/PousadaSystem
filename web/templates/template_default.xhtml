@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- MOBILE FIRST - SEM ZOOM -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- Bootstrap core CSS -->
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+
+        <!-- Bootstrap theme
+        <h:outputStylesheet library="css" name="bootstrap-theme.min.css"/>
+        -->
+
+        <!-- INCLUIR CSSs PERSONALIZADOS -->
+        <h:outputStylesheet library="css" name="scrolling-nav.css"/>
+        <h:outputStylesheet library="css" name="styles.css"/>
+
+        <title>
+            <ui:insert name="titulo_pagina">[TITULO DA PÁGINA]</ui:insert>
+        </title>
+    </h:head>
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar-#{sessaoUsuario.navbarType}-top">
+
+        <!-- ########################## CABEÇALHO ########################## -->
+        <header id="header">
+            <!-- ######################## NAV ######################## -->
+            <nav class="navbar navbar-default navbar-#{sessaoUsuario.navbarType}-top" role="navigation">
+                <h:form id="frmHeader" class="container-fluid">
+
+                    <!-- ############### BOTÃO TOGGLE E HLOGO ########## -->
+                    <div class="navbar-header">
+                        <!-- ############### BOTÃO TOGGLE ############## -->
+                        <button type="button" class="navbar-toggle collapsed" 
+                                data-toggle="collapse" 
+                                data-target="#navbar"
+                                aria-expanded="false"
+                                aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <!-- #################### HLOGO ################ -->
+                        <h:commandLink class="navbar-brand page-scroll arcadia-logo"
+                                       action="index"
+                                       value="ARCADIA">
+                        </h:commandLink>
+
+                    </div>
+
+                    <!-- ################### HCENTRAL ###################### -->
+                    <div id="navbar" class="navbar-collapse collapse">
+
+                        <!-- ################ HCENTRAL_ITEM ################ -->
+                        <ul class="nav navbar-nav">
+                            <!-- ESPAÇO PARA 1 LI, SOMENTE -->
+                            <li>
+                                <!-- [HCENTRAL_ITEM] -->
+                                <ui:insert name="hcentral"></ui:insert>
+                            </li>
+                        </ul>
+
+                        <!-- ################# HCONTROL #################### -->
+                        <ul class="nav navbar-nav navbar-right center-block hcontrol">
+
+                            <!-- ESPAÇO PARA 3 LIs, SOMENTE -->
+                            <li>
+                                <!-- [HCONTROL_00] -->
+                                <ui:insert name="hcontrol_00"></ui:insert>
+                            </li>
+
+                            <li>
+                                <!-- [HCONTROL_01] -->
+                                <ui:insert name="hcontrol_01"></ui:insert>
+                            </li>
+
+                            <li>
+                                <!-- [HCONTROL_02] -->
+                                <ui:insert name="hcontrol_02"></ui:insert>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </h:form> <!-- /frmHeader -->
+            </nav>
+        </header>
+
+        <!-- ############################ CORPO ############################ -->
+
+
+        <ui:insert name="main_sections">
+            <!-- 
+                [MAIN_SECTION] (Insira Seções Aqui)
+                Recomendação: Um formulário para cada seção
+            -->
+        </ui:insert>
+
+    </body>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <h:outputScript library="js" name="jquery.js"/>
+    <h:outputScript library="js" name="bootstrap.min.js"/>
+    <h:outputScript library="js" name="jquery.easing.min.js"/>
+    <h:outputScript library="js" name="scrolling-nav.js"/>
+
+</html>

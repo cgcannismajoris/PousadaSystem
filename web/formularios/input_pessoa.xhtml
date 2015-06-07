@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- Nome -->
+    <div class="row">
+        <h:outputLabel value="Nome" for="nome" class="col-xs-2"/>
+        <div class="row-centered">
+            <div class="col-xs-12 col-centered form-group">
+                <h:inputText id="nome" class="form-control"
+                             pt:placeholder="Ex.: João Cândido Porta-Retrato"
+                             value="#{inputNome}"
+                             required="true"
+                             requiredMessage="Nome: Campo em branco."/>
+            </div>
+        </div>
+    </div>
+
+    <!-- Endereço -->
+    <div class="row">
+        <h:outputLabel value="Endereço" for="endereco" class="col-xs-2"/>
+        <div class="row-centered">
+            <div class="col-xs-12 col-centered form-group">
+                <h:inputText id="endereco" class="form-control" 
+                             pt:placeholder="Ex.: Rua Gastão Costa, 320, Bairro Mococa, Cidade Naval"
+                             value="#{inputEndereco}"
+                             required="true"
+                             requiredMessage="Endereço: Campo em branco."/>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data de Nascimento -->
+    <div class="row">
+        <div class="col-xs-6">
+            <h:outputLabel value="Data de Nascimento" for="dataNascimento"/>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <h:inputText id="dataNascimento" class="form-control" 
+                         pt:placeholder="Ex.: 10/12/1980 (Dia/Mês/Ano)"
+                         value="#{inputDataNascimento}"
+                         required="true"
+                         requiredMessage="Data de Nascimento: Campo em branco."
+                         converterMessage="Formato de data inválida.">
+                <f:convertDateTime type="date" locale="pt_BR" pattern="dd/MM/yyyy"/>
+            </h:inputText>
+        </div>
+    </div>
+    <br/>
+
+    <!-- Login e Senha -->
+    <div class="row">
+        <div class="col-xs-6">
+            <h:outputLabel value="Login" for="login"/>
+        </div>
+        <div class="col-xs-6">
+            <h:outputLabel value="Senha" for="senha"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <h:inputText id="login" class="form-control" 
+                         pt:placeholder="Ex.: joaocandidodemais"
+                         value="#{inputLogin}"
+                         required="true"
+                         requiredMessage="Login: Campo em branco."/>
+        </div>
+        <div class="col-xs-6">
+            <h:inputText id="senha" class="form-control" 
+                         pt:placeholder="Ex.: jojodoido"
+                         value="#{inputSenha}"
+                         required="true"
+                         requiredMessage="Senha: Campo em branco."/>
+        </div>
+    </div>
+
+</html>

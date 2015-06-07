@@ -1,0 +1,6 @@
+DEFINIÇÕES DE PRIVILÉGIOS
+*************************
+
+[0] PROPRIETÁRIO;
+[1] ADMINISTRADOR;
+[2] CLIENTE

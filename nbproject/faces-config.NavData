@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="login.xhtml" x="1135" y="32" zoom="true"/>
+        <Node id="index.xhtml" x="883" y="32" zoom="true"/>
+        <Node id="usuarios/proprietario/proprietario_cadAdmin.xhtml" x="1778" y="32" zoom="true"/>
+        <Node id="formularios/input_pessoa.xhtml" x="1384" y="32" zoom="true"/>
+        <Node id="usuarios/proprietario/proprietario_section.xhtml" x="2308" y="32" zoom="true"/>
+        <Node id="dashboard/dashboard.xhtml" x="48" y="33" zoom="true"/>
+        <Node id="templates/template_default.xhtml" x="472" y="32" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
