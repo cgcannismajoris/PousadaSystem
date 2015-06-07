@@ -35,6 +35,12 @@ public class SessaoUsuario
         this.getVisitante().setSenha("jorjao123");
     }
     
+    public void obterDadosAdmin(AjaxBehaviorEvent event)
+    {
+        this.getVisitante().setLogin("carlaovagabundo");
+        this.getVisitante().setSenha("carlao22doido");
+    }
+    
     public String logar()
     {
         Pessoa pessoa = UsuarioDAO.autenticarUsuario(visitante);

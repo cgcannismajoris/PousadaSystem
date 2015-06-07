@@ -4,6 +4,7 @@ import factories.PessoaFactory;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import modelo.Administrador;
 import modelo.Pessoa;
 import modelo.Proprietario;
 
@@ -17,6 +18,9 @@ public class RequestUsuarioAuth
     
     // Bean de Proprietário (só existirá 1)
     private ManageBeanProprietario proprietarioMB;
+    
+    // Bean de Administrador (só existirá 1)
+    private ManageBeanAdmin adminMB;
     
     private Date tempo;                 // data de seção
     private String tipoUsuarioSection;  // seção do tipo de usuário
@@ -45,6 +49,10 @@ public class RequestUsuarioAuth
                 
             case PessoaFactory.ADMINISTRADOR:
             {
+                // Instanciar MB de admin
+                this.adminMB = new ManageBeanAdmin();
+                this.adminMB.setAdmin((Administrador)pessoa);
+                
                 this.tipoUsuarioSection = "admin/admin_section";
             } break;
                 
@@ -79,5 +87,15 @@ public class RequestUsuarioAuth
     public void setProprietarioMB(ManageBeanProprietario proprietarioMB)
     {
         this.proprietarioMB = proprietarioMB;
+    }
+
+    public ManageBeanAdmin getAdminMB()
+    {
+        return adminMB;
+    }
+
+    public void setAdminMB(ManageBeanAdmin adminMB)
+    {
+        this.adminMB = adminMB;
     }
 }

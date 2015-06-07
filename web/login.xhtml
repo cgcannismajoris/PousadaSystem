@@ -42,7 +42,10 @@
 
             <ui:define name="hcontrol_01">
                 <h:commandButton value="Admin?"
-                                 class="btn btn-success btn-hcontrol"/>
+                                 class="btn btn-success btn-hcontrol">
+                    <f:ajax listener="#{sessaoUsuario.obterDadosAdmin}"
+                            render=":main :frmLogin:login :frmLogin:senha"/>
+                </h:commandButton>
             </ui:define>
 
             <ui:define name="main_sections">
@@ -76,7 +79,7 @@
                             <h:commandButton value="Entrar"
                                              class="btn btn-lg btn-primary btn-block"
                                              action="#{sessaoUsuario.logar()}"/>
-                            
+
                             <hr/>
 
                             <h:messages class="alert alert-danger">
