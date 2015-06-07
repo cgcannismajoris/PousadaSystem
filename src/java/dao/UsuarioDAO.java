@@ -118,7 +118,7 @@ public class UsuarioDAO
             {
                 // Preencher os dados de Administrador
                 adminLido = new Administrador();
-                
+
                 adminLido.setId(new Integer(rs.getString("idPessoa")));
                 adminLido.setLogin(rs.getString("login"));
                 adminLido.setSenha(rs.getString("senha"));
@@ -145,5 +145,74 @@ public class UsuarioDAO
         }
 
         return adminLido;
+    }
+
+    @SuppressWarnings("null")
+    public static boolean inserirPessoaDAO(Pessoa p)
+    {
+        boolean retorno = true;
+        Integer idPessoa;
+
+        con = GerenciadorDB.getInstance().abrirConexao();
+        String sql
+                = "INSERT INTO Pessoa (nome, dataNascimento, login, senha, "
+                + "privilegio, endereco) VALUES (?, ?, ?, ?, ?, ?);";
+
+        PreparedStatement stmt = null;
+
+        try
+        {
+            stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, p.getNome());
+            stmt.setDate(2, new java.sql.Date(p.getDataNascimento().getTime()));
+            stmt.setString(3, p.getLogin());
+            stmt.setString(4, p.getSenha());
+            stmt.setInt(5, p.getPrivilegio());
+            stmt.setString(6, p.getEndereco());
+            stmt.executeUpdate();
+
+            // Inserir idPessoa na Tabela Administrador
+            if (p.getPrivilegio() == PessoaFactory.ADMINISTRADOR)
+            {
+                // Executar uma pequena consulta
+                sql = "SELECT idPessoa FROM Pessoa "
+                        + "WHERE (privilegio = " + p.getPrivilegio() + ")";
+
+                stmt = con.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next())
+                {
+                    idPessoa = rs.getInt("idPessoa");
+
+                    // Efetuar inserção na tabela Administrador
+                    sql = "INSERT INTO Administrador (Pessoa_idPessoa) VALUES (?);";
+                    
+                    stmt = con.prepareStatement(sql);
+                    stmt.setInt(1, idPessoa);
+                    stmt.executeUpdate();
+                }
+            }
+
+            retorno = true;
+
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            retorno = false;
+        } finally
+        {
+            try
+            {
+                stmt.close();
+                con.close();
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return retorno;
     }
 }
