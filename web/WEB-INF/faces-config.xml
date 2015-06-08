@@ -32,6 +32,7 @@
         <navigation-case>
             <from-outcome>dashboard</from-outcome>
             <to-view-id>/dashboard/dashboard.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>

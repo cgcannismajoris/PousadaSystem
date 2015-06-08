@@ -2,10 +2,65 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <section id="proprietario-section" class="proprietario-section">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-        SEÇÃO DO ADMIN.
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    </h:head>
+
+    <section id="admin-section" class="admin-section">
+
+        <!-- BLOCO ONDE ESTARÁ TUDO -->
+        <div class="container dashboard-painel img-rounded">
+
+            <!-- LINHA PRINCIPAL -->
+            <div class="row">
+
+                <h:form id="frmPaineisAcesso">
+                    <!-- PAINEL DE PERFIL E GERÊNCIAS  -->
+                    <div class="col-md-3">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibePerfil}">
+                                <h:commandLink value="Perfil"
+                                               action="dashboard">
+                                    <f:ajax listener="#{sessaoUsuario.
+                                                        usuarioAuth.adminMB.ativarPainelPerfil}"/>
+                                </h:commandLink>
+                            </li>
+                            <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerEquips}">
+                                <h:commandLink value="Gerência de Equipamentos"
+                                               action="dashboard">
+                                    <f:ajax listener="#{sessaoUsuario.
+                                                        usuarioAuth.adminMB.ativarPainelGerEquips}"/>
+                                </h:commandLink>
+                            </li>
+                            <li role="presentation" class=""><a href="#">Gerência de Chalés</a></li>
+                            <li role="presentation" class=""><a href="#">Gerência de Clientes</a></li>
+                            <li role="presentation" class=""><a href="#">Gerência de Hospedagens</a></li>
+                        </ul>
+                    </div>
+                </h:form>
+
+                <!-- PAINEL DE AÇÕES DE PERFIL E GERÊNCIAS -->
+                <div class="col-md-4 dashboard-painel-actions">
+
+                    <!-- FORMULÁRIO DE PERFIL -->
+                    <h:form id="frmPerfilAdmin" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibePerfil}">
+                        <ui:include src="admin_perfil.xhtml"/>
+                    </h:form>
+
+                    <!-- FORMULÁRIO DE ABAS DE GERÊNCIAS -->
+                    <!-- fazer include -->
+                    <h:form id="frmGers">
+
+                    </h:form>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </section>
 </html>

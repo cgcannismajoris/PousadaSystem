@@ -88,6 +88,15 @@ html
     margin-top: -40px;
 }
 
+.admin-section
+{
+    height: 140%;
+    padding-top: 50px;
+    text-align: center;
+    background:  #8300cc;
+    margin-top: -40px;
+}
+
 .default-section
 {
     height: 100%;

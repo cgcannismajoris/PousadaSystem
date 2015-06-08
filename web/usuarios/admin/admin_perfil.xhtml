@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <div class="row col-centered dashboard-painel-perfil">
+        <h3 class="text-center">Perfil</h3>
+        
+        <!-- FORMULÁRIO DE VISUALIZAÇÃO DE DADOS DE PESSOA -->
+        <ui:include src="../../formularios/output_pessoa.xhtml">
+            <ui:param name="outputNome" value="#{sessaoUsuario.usuarioAuth.pessoa.nome}"/>
+            <ui:param name="outputEndereco" value="#{sessaoUsuario.usuarioAuth.pessoa.endereco}"/>
+            <ui:param name="outputDataNascimento" value="#{sessaoUsuario.usuarioAuth.pessoa.dataNascimento}"/>
+            <ui:param name="outputLogin" value="#{sessaoUsuario.usuarioAuth.pessoa.login}"/>
+            <ui:param name="outputSenha" value="Não visível"/>
+        </ui:include>
+    </div>
+
+
+</html>
+

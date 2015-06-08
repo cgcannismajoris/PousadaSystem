@@ -148,7 +148,7 @@
         padding-right: 35px;
         padding-bottom: 35px;
         padding-top: 0px;
-        
+
         // Pequenas correções de ajuste de margens
         margin-left: 1px;
         margin-right: 2px;
@@ -158,4 +158,56 @@
 .input-frmLogin
 {
     margin-bottom: 5px;
+}
+
+.dashboard-painel
+{
+    background-color: #f8f8f8;
+    padding: 10px 10px 10px 10px;
+}
+
+.dashboard-painel-perfil
+{
+    background-color: #fcfcfc;
+    border-radius: 3px;
+    width: 74.7%;
+    margin-left: -10px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.dashboard-painel-actions
+{
+    background-color: #fcfcfc;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e5e5e5;
+    border-radius: 3px;
+    width: 74.7%;
+    margin-left: -10px;
+}
+
+@media screen and (max-width: 991px)
+{
+    .dashboard-painel-actions
+    {
+        background-color: #fcfcfc;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #e5e5e5;
+        border-radius: 3px;
+        width: 96%;
+        margin-left: 15px;
+        margin-top: 10px;
+    }
+
+    .dashboard-painel-perfil
+    {
+        background-color: #fcfcfc;
+        width: 96%;
+        margin-left: 15px;
+        margin-top: 10px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
 }
