@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Chale;
 import modelo.Equipamento;
 import tools.GerenciadorDB;
 
@@ -19,29 +21,32 @@ import tools.GerenciadorDB;
  *
  * @author Gustavo Freitas
  */
-public class EquipamentoDAO {
+public class ChaleDAO {
     
     private static Connection con = null;
     
     @SuppressWarnings("null")
-    public static ArrayList<Equipamento> obterTodos(){
+    public static ArrayList<Chale> obterTodos(){
         
         ResultSet rs = null;
-        Equipamento tmp;
-        ArrayList<Equipamento> result = new ArrayList<>();
+        
+        Chale tmp;
+        ArrayList<Chale> result = new ArrayList<>();
+        ArrayList<Equipamento> equips = new ArrayList<>();
         
         con = GerenciadorDB.getInstance().abrirConexao();
-        String query = "SELECT * FROM equipamento";
+        String query = "SELECT * FROM chale";
         PreparedStatement stmt = null;
         
+        //Obtém a lista de todos os chalés
         try {
             
             stmt = con.prepareStatement(query);
-            
             rs = stmt.executeQuery();
             
             while(rs.next()){
-                tmp = new Equipamento(rs.getInt("idEquipamento"), rs.getString("descricao"));
+                tmp = new Chale(rs.getInt("idChale"), rs.getInt("numero"), new BigDecimal(rs.getDouble("diaria")));
+                tmp.addEquipamento(EquipamentoDAO.obterTodosByChale(tmp.getId()));
                 result.add(tmp);
             }
         } 
@@ -64,27 +69,27 @@ public class EquipamentoDAO {
         return (result);
     }
     
-    @SuppressWarnings("null")
-    public static ArrayList<Equipamento> obterTodosByDesc(String descricao){
-        
+    public static Chale obterByNumero(int numero){
+
         ResultSet rs = null;
-        Equipamento tmp;
-        ArrayList<Equipamento> result = new ArrayList<>();
+        
+        Chale tmp = null;
+        ArrayList<Chale> result = new ArrayList<>();
         
         con = GerenciadorDB.getInstance().abrirConexao();
-        String query = "SELECT * FROM equipamento WHERE ( descricao = ? )";
+        String query = "SELECT * FROM Chale WHERE ( numero = ? )";
         PreparedStatement stmt = null;
         
+        //Obtém a lista de todos os chalés
         try {
             
             stmt = con.prepareStatement(query);
-            stmt.setString(1, descricao);
+            stmt.setInt(1, numero);
             
             rs = stmt.executeQuery();
             
-            while(rs.next()){
-                tmp = new Equipamento(rs.getInt("idEquipamento"), rs.getString("descricao"));
-                result.add(tmp);
+            if(rs.next()){
+                tmp = new Chale(rs.getInt("idChale"), rs.getInt("numero"), new BigDecimal(rs.getDouble("diaria")));
             }
         } 
         catch (SQLException ex) {
@@ -102,61 +107,21 @@ public class EquipamentoDAO {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        //Obtém os equipamentos do chalé
+        if(tmp != null){
+            tmp.addEquipamento(EquipamentoDAO.obterTodosByChale(tmp.getId()));
+        }
         
-        return (result);
+        return (tmp);
     }
     
     @SuppressWarnings("null")
-    public static ArrayList<Equipamento> obterTodosByChale(Integer idChale){
-        ResultSet rs = null;
-        Equipamento tmp;
-        ArrayList<Equipamento> result = new ArrayList<>();
-        
-        con = GerenciadorDB.getInstance().abrirConexao();
-        String sql = "SELECT Equipamento.idEquipamento, Equipamento.descricao "
-                + "FROM Equipamento INNER JOIN Chaleequipamento "
-                + "ON (Equipamento.idEquipamento = Chaleequipamento.Equipamento_idEquipamento) "
-                + "WHERE (Chaleequipamento.Chale_idChale = ? )";
-        PreparedStatement stmt = null;
-        
-        try {
-            
-            stmt = con.prepareStatement(sql);
-            stmt.setInt(1, idChale);
-            
-            rs = stmt.executeQuery();
-            
-            while(rs.next()){
-                tmp = new Equipamento(rs.getInt("idEquipamento"), rs.getString("descricao"));
-                result.add(tmp);
-            }
-        }
-        catch (SQLException ex) {
-            Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            result = null;
-        }finally
-        {
-            try
-            {
-                rs.close();
-                stmt.close();
-                con.close();
-            } catch (SQLException ex)
-            {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-        return (result);
-    }
-    
-    @SuppressWarnings("null")
-    public static boolean inserirEquipamentoDAO(Equipamento e){
+    public static boolean inserirChaleDAO(Chale c){
         boolean retorno = true;
 
         con = GerenciadorDB.getInstance().abrirConexao();
         String sql
-                = "INSERT INTO Equipamento (descricao) VALUES (?);";
+                = "INSERT INTO Chale (numero, diaria) VALUES (?, ?);";
 
         PreparedStatement stmt = null;
 
@@ -164,24 +129,42 @@ public class EquipamentoDAO {
         {
             stmt = con.prepareStatement(sql);
             
-            stmt.setString(1, e.getDescricao());
+            stmt.setInt(1, c.getNumero());
+            stmt.setDouble(2, c.getDiaria().doubleValue());
             
             //Insere no banco
             stmt.executeUpdate();
             stmt.close();
             
             //Obtém o id do equipamento inserido
-            sql = "SELECT idEquipamento FROM equipamento "
-                    + "WHERE ( descricao = ? )";
+            sql = "SELECT idChale FROM chale "
+                    + "WHERE ( numero = ? and diaria = ?)";
             
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, e.getDescricao());
+            stmt.setInt(1, c.getNumero());
+            stmt.setDouble(2, c.getDiaria().doubleValue());
             
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next())
             {
-                e.setId(rs.getInt("idEquipamento"));
+                c.setId(rs.getInt("idChale"));
+            }
+            
+            rs.close();
+            
+            //Insere as referências para os equipamentos
+            sql = "INSERT INTO Chaleequipamento ( Chale_idChale , Equipamento_idEquipamento ) "
+                    + "VALUES ( ? , ? )";
+            
+            for(Equipamento e : c.getEquipamentos()){
+                //Fecho o statement antes para, em caso de exceção
+                //não dar treta no finaly
+                stmt.close();
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, c.getId());
+                stmt.setInt(2, e.getId());
+                stmt.executeUpdate();
             }
             
             rs.close();

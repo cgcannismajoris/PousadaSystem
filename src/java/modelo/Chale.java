@@ -2,6 +2,7 @@ package modelo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
 
@@ -14,9 +15,7 @@ public class Chale
     private Integer numero;
     private BigDecimal diaria;
 
-    private ArrayList<Reserva> reservas = new ArrayList<>();
     private ArrayList<Equipamento> equipamentos = new ArrayList<>();
-
     
     public Chale(Integer id, Integer numero, BigDecimal diaria)
     {
@@ -44,6 +43,18 @@ public class Chale
         return SUCESSO_ADDEQUIP;
     }
 
+    public int addEquipamento(Collection<Equipamento> equips)
+    {
+        for(Equipamento e : equips){
+            if (this.equipamentos.contains(e))
+                return FALHA_JAPOSSUI;
+        }
+        
+        this.equipamentos.addAll(equips);
+
+        return SUCESSO_ADDEQUIP;
+    }
+    
     public Integer getId()
     {
         return id;
@@ -72,16 +83,6 @@ public class Chale
     public void setDiaria(BigDecimal diaria)
     {
         this.diaria = diaria;
-    }
-
-    public ArrayList<Reserva> getReservas()
-    {
-        return reservas;
-    }
-
-    public void setReservas(ArrayList<Reserva> reservas)
-    {
-        this.reservas = reservas;
     }
 
     public ArrayList<Equipamento> getEquipamentos()
