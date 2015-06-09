@@ -16,7 +16,7 @@ public class GerenciadorDB
             "jdbc:mysql://localhost:3306/db_pousada_system?zeroDateTimeBehavior=convertToNull";
     
     private static final String user = "javauser";
-    private static final String password = "123";
+    private static final String password = "123456";
     
     
     // Tags para navegação das páginas

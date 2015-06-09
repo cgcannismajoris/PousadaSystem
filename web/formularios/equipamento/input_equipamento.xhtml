@@ -5,17 +5,13 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <!-- Descrição -->
-    <div class="row">
-        <h:outputLabel value="Descrição" for="descricao" class="col-xs-2"/>
-        <div class="row-centered">
-            <div class="col-xs-12 col-centered form-group">
-                <h:inputText id="descricao" class="form-control"
-                             pt:placeholder="Ex.: Frigobar 500l"
-                             value="#{inputDescricao}"
-                             required="true"
-                             requiredMessage="Descrição: Campo em branco."/>
-            </div>
-        </div>
+    <div class="col-md-12 col-centered">
+        <h:outputLabel value="Descrição" for="descricao"/>
+        <h:inputText id="descricao" class="form-control"
+                     pt:placeholder="Ex.: Frigobar 500l"
+                     value="#{inputDescricao}"
+                     required="true"
+                     requiredMessage="Descrição: Campo em branco."/>
     </div>
 
 </html>

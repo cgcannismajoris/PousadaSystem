@@ -6,6 +6,8 @@ public class Equipamento
 {
     private Integer id;
     private String descricao;
+    
+    public Equipamento() {}
 
     public Equipamento(Integer id, String descricao)
     {

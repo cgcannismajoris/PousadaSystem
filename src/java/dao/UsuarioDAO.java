@@ -29,7 +29,7 @@ public class UsuarioDAO
         Pessoa pessoaLida = null;
 
         con = GerenciadorDB.getInstance().abrirConexao();
-        String sql = "SELECT * FROM Pessoa WHERE (login = ? and senha = ?)";
+        String sql = "SELECT * FROM pessoa WHERE (login = ? and senha = ?)";
         PreparedStatement stmt = null;
 
         try
@@ -106,8 +106,8 @@ public class UsuarioDAO
         Administrador adminLido = null;
 
         con = GerenciadorDB.getInstance().abrirConexao();
-        String sql = "SELECT * FROM Pessoa INNER JOIN Administrador "
-                + "ON (Pessoa.idPessoa = Administrador.Pessoa_idPessoa)";
+        String sql = "SELECT * FROM pessoa INNER JOIN administrador "
+                + "ON (pessoa.idPessoa = administrador.Pessoa_idPessoa)";
 
         PreparedStatement stmt = null;
 
@@ -158,7 +158,7 @@ public class UsuarioDAO
         
         con = GerenciadorDB.getInstance().abrirConexao();
         String sql
-                = "INSERT INTO Pessoa (nome, dataNascimento, login, senha, "
+                = "INSERT INTO pessoa (nome, dataNascimento, login, senha, "
                 + "privilegio, endereco) VALUES (?, ?, ?, ?, ?, ?);";
 
         PreparedStatement stmt = null;
@@ -190,7 +190,7 @@ public class UsuarioDAO
                     p.setId(rs.getInt("idPessoa"));
 
                     // Efetuar inserção na tabela Administrador
-                    sql = "INSERT INTO Administrador (Pessoa_idPessoa) VALUES (?);";
+                    sql = "INSERT INTO administrador (Pessoa_idPessoa) VALUES (?);";
                     
                     stmt = con.prepareStatement(sql);
                     stmt.setInt(1, p.getId());
@@ -203,7 +203,7 @@ public class UsuarioDAO
             // Inserir idPessoa na Tabela Cliente
             else if (p.getPrivilegio() == PessoaFactory.CLIENTE){
                 // Executar uma pequena consulta
-                sql = "SELECT idPessoa FROM Pessoa "
+                sql = "SELECT idPessoa FROM pessoa "
                         + "WHERE ( privilegio = ? and nome = ? and login = ? "
                         + "and endereco = ? )";
 
@@ -219,7 +219,7 @@ public class UsuarioDAO
                     p.setId(rs.getInt("idPessoa"));
 
                     // Efetuar inserção na tabela Administrador
-                    sql = "INSERT INTO Cliente (Pessoa_idPessoa) VALUES (?);";
+                    sql = "INSERT INTO cliente (Pessoa_idPessoa) VALUES (?);";
                     
                     stmt = con.prepareStatement(sql);
                     stmt.setInt(1, p.getId());
@@ -258,8 +258,8 @@ public class UsuarioDAO
         ArrayList<Cliente> result = new ArrayList<>();
         
         con = GerenciadorDB.getInstance().abrirConexao();
-        String sql = "SELECT * FROM Pessoa INNER JOIN Cliente "
-                + "ON (Pessoa.idPessoa = Cliente.Pessoa_idPessoa)";
+        String sql = "SELECT * FROM pessoa INNER JOIN cliente "
+                + "ON (pessoa.idPessoa = cliente.Pessoa_idPessoa)";
 
         PreparedStatement stmt = null;
 
@@ -312,9 +312,9 @@ public class UsuarioDAO
         Cliente clienteLido = null;
         
         con = GerenciadorDB.getInstance().abrirConexao();
-        String sql = "SELECT * FROM Pessoa INNER JOIN Cliente "
-                + "ON (Pessoa.idPessoa = Cliente.Pessoa_idPessoa) "
-                + "WHERE ( Pessoa.nome = ? )";
+        String sql = "SELECT * FROM pessoa INNER JOIN cliente "
+                + "ON (pessoa.idPessoa = cliente.Pessoa_idPessoa) "
+                + "WHERE ( pessoa.nome = ? )";
 
         PreparedStatement stmt = null;
 

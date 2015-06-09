@@ -152,6 +152,7 @@ public class EquipamentoDAO {
     
     @SuppressWarnings("null")
     public static boolean inserirEquipamentoDAO(Equipamento e){
+
         boolean retorno = true;
 
         con = GerenciadorDB.getInstance().abrirConexao();

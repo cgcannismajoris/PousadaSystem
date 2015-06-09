@@ -7,6 +7,7 @@
 
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
     </h:head>
 
     <section id="admin-section" class="admin-section">
@@ -22,20 +23,23 @@
                     <div class="col-md-3">
                         <ul class="nav nav-pills nav-stacked">
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibePerfil}">
-                                <h:commandLink value="Perfil"
-                                               action="dashboard">
+                                <h:commandLink value="Perfil">
                                     <f:ajax listener="#{sessaoUsuario.
-                                                        usuarioAuth.adminMB.ativarPainelPerfil}"/>
+                                                        usuarioAuth.adminMB.ativarPainelPerfil}"
+                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerEquips}">
-                                <h:commandLink value="Gerência de Equipamentos"
-                                               action="dashboard">
+                                <h:commandLink value="Gerência de Equipamentos">
                                     <f:ajax listener="#{sessaoUsuario.
-                                                        usuarioAuth.adminMB.ativarPainelGerEquips}"/>
+                                                        usuarioAuth.adminMB.ativarPainelGerEquips}"
+                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips"/>
                                 </h:commandLink>
                             </li>
-                            <li role="presentation" class=""><a href="#">Gerência de Chalés</a></li>
+                            <li role="presentation" class="">
+                                <h:commandLink value="Gerência de CHalés">
+                                </h:commandLink>
+                            </li>
                             <li role="presentation" class=""><a href="#">Gerência de Clientes</a></li>
                             <li role="presentation" class=""><a href="#">Gerência de Hospedagens</a></li>
                         </ul>
@@ -46,20 +50,32 @@
                 <div class="col-md-4 dashboard-painel-actions">
 
                     <!-- FORMULÁRIO DE PERFIL -->
-                    <h:form id="frmPerfilAdmin" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibePerfil}">
-                        <ui:include src="admin_perfil.xhtml"/>
-                    </h:form>
+                    <h:panelGroup id="painelPerfil">
+                        <h:form id="frmPerfilAdmin" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibePerfil}">
+                            <ui:include src="admin_perfil.xhtml"/>
+                        </h:form>
+                    </h:panelGroup>
 
-                    <!-- FORMULÁRIO DE ABAS DE GERÊNCIAS -->
+                    <!-- ############## FORMULÁRIOS DE GERÊNCIAS ########### -->
                     <!-- fazer include -->
-                    <h:form id="frmGers">
-
-                    </h:form>
+                    <h:panelGroup id="painelGerEquips">
+                        <h:form id="frmGerEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerEquips}">
+                            <ui:include src="gerencias/admin_ger_equips.xhtml"/>
+                        </h:form>
+                        <h:messages globalOnly="true" class="alert alert-danger"/>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup id="painelGerChales">
+                        <h:form id="frmGerChales" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerChale}">
+                            <ui:include src="gerencias/admin_ger_chales.xhtml"/>
+                        </h:form>
+                        <h:messages globalOnly="true" class="alert alert-danger"/>
+                    </h:panelGroup>
+                    
+                    <!-- ################################################### -->
 
                 </div>
-
             </div>
-
         </div>
 
     </section>
