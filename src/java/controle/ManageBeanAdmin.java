@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.StringTokenizer;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,6 +20,7 @@ import modelo.Equipamento;
 @RequestScoped
 public class ManageBeanAdmin
 {
+
     private Administrador admin;
 
     public final byte PAINEL_PERFIL = 1;
@@ -42,7 +41,7 @@ public class ManageBeanAdmin
     private boolean boolExibeGerChales;
     private boolean boolExibeGerClientes;
     private boolean boolExibeGerHospedagens;
-    
+
     // Estados de interface de abas
     // Gerência de Equipamento
     public final byte ABA_GER_EQUIPS_INSERIR_EQUIP = 1;
@@ -53,38 +52,47 @@ public class ManageBeanAdmin
 
     private String strExibeInserirEquip = "active";
     private String strExibeVisualEquips = "";
-    
+
     // Gerência de Chalés
     public final byte ABA_GER_CHALES_INSERIR_CHALE = 1;
     public final byte ABA_GER_CHALES_VISUAL_CHALES = 2;
-    
+
     private boolean boolExibeInserirChale = true;
     private boolean boolExibeVisualChales;
-    
+
     private String strExibeInserirChale = "active";
     private String strExibeVisualChales = "";
-    
+
     // Gerência de Clientes
     public final byte ABA_GER_CLIENTES_INSERIR_CLIENTE = 1;
     public final byte ABA_GER_CLIENTES_VISUAL_CLIENTES = 2;
-    
+
     private boolean boolExibeInserirCliente = true;
     private boolean boolExibeVisualClientes;
-    
+
     private String strExibeInserirCliente = "active";
     private String strExibeVisualClientes = "";
-    
+
+    //Gerências de Hospedagens
+    public final byte ABA_GER_HOSPS_REALIZAR_HOSP = 1;
+    public final byte ABA_GER_HOSPS_VISUAL_HOSPS = 2;
+
+    private boolean boolExibeRealizarHosp = true;
+    private boolean boolExibeVisualHosps;
+
+    private String strExibeRealizarHosp = "active";
+    private String strExibeVisualHosps = "";
 
     // Equipamento temporário
     private Equipamento tmpEquip = new Equipamento();
     private ArrayList<Equipamento> tmpEquips = new ArrayList<>();
-    
+
     private Map<Equipamento, Boolean> tmpMapSelectedEquips = new HashMap<>();
-    
+
     // Chalé temporário
     private Chale tmpChale = new Chale();
     private ArrayList<Chale> tmpChales = new ArrayList<>();
-    
+
     public String salvarEquip()
     {
         System.out.println(tmpEquip.getDescricao());
@@ -99,10 +107,10 @@ public class ManageBeanAdmin
                             "Sucesso ao inserir."
                     )
             );
-            
+
             this.tmpEquip.setDescricao("");
             this.tmpEquip.setId(0);
-            
+
             return (null);
         } else
         {
@@ -117,34 +125,40 @@ public class ManageBeanAdmin
             return (null);
         }
     }
-    
-    public String editarEquip(Equipamento e){
+
+    public String editarEquip(Equipamento e)
+    {
         e.setEditable(true);
         System.out.println("aqui " + e.getDescricao() + "++++++++++++++++++++++++++++++++++++++++++++++++++");
         return ("dashboard");
     }
-    
-    public String salvarEquip(Equipamento e){
+
+    public String salvarEquip(Equipamento e)
+    {
         e.setEditable(false);
         EquipamentoDAO.atualizarEquipamento(e);
         System.out.println("aqui " + e.getDescricao() + "++++++++++++++++++++++++++++++++++++++++++++++++++");
         return ("dashboard");
     }
-    
-    public String apagarEquip(Equipamento e){
+
+    public String apagarEquip(Equipamento e)
+    {
         e.setEditable(false);
         return ("dashboard");
     }
-    
-    public String salvarChale(){
-        
+
+    public String salvarChale()
+    {
+
         //Insere os equipamentos selecionados
-        for(Map.Entry<Equipamento, Boolean> item : this.tmpMapSelectedEquips.entrySet()){  
-            if(item.getValue() == true){
+        for (Map.Entry<Equipamento, Boolean> item : this.tmpMapSelectedEquips.entrySet())
+        {
+            if (item.getValue() == true)
+            {
                 this.tmpChale.addEquipamento(item.getKey());
             }
         }
-        
+
         if (ChaleDAO.inserirChaleDAO(tmpChale))
         {
             FacesContext.getCurrentInstance().addMessage(
@@ -155,13 +169,13 @@ public class ManageBeanAdmin
                             "Sucesso ao inserir."
                     )
             );
-            
+
             this.tmpChale.setDiaria(new BigDecimal(0.0));
             this.tmpChale.setEquipamentos(new ArrayList<>());
             this.tmpChale.setId(0);
             this.tmpChale.setNumero(0);
             this.tmpEquip.setId(0);
-            
+
             return (null);
         } else
         {
@@ -176,28 +190,32 @@ public class ManageBeanAdmin
             return (null);
         }
     }
-    
-    public ArrayList<Equipamento> carregarTodosEquips(){
+
+    public ArrayList<Equipamento> carregarTodosEquips()
+    {
         this.tmpEquips = EquipamentoDAO.obterTodos();
         return (this.tmpEquips);
     }
 
-    public ArrayList<Equipamento> carregarTodosEquipsForNewChale(){
+    public ArrayList<Equipamento> carregarTodosEquipsForNewChale()
+    {
         this.tmpEquips = EquipamentoDAO.obterTodos();
-        
+
         //Adiciona os equipamentos no mapa
-        for(Equipamento item : this.tmpEquips){
+        for (Equipamento item : this.tmpEquips)
+        {
             this.tmpMapSelectedEquips.put(item, false);
         }
-        
+
         return (this.tmpEquips);
     }
-    
-    public ArrayList<Chale> carregarTodosChales(){
+
+    public ArrayList<Chale> carregarTodosChales()
+    {
         this.tmpChales = ChaleDAO.obterTodos();
         return (this.tmpChales);
     }
-	
+
     public void ativarPainelPerfil(AjaxBehaviorEvent event)
     {
         this.trocarPainel(PAINEL_PERFIL);
@@ -217,7 +235,7 @@ public class ManageBeanAdmin
     {
         this.trocarPainel(PAINEL_GER_CLIENTES);
     }
-    
+
     public void ativarPainelGerHospedagens(AjaxBehaviorEvent event)
     {
         this.trocarPainel(PAINEL_GER_HOSPEDAGENS);
@@ -240,7 +258,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerChales = false;
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = false;
-				
+
                 this.tmpEquips.clear();
                 this.tmpChales.clear();
             }
@@ -259,7 +277,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerChales = false;
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = false;
-                
+
                 this.tmpChales.clear();
             }
             break;
@@ -277,7 +295,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerChales = true;
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = false;
-				
+
                 this.tmpEquips.clear();
             }
             break;
@@ -295,7 +313,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerChales = false;
                 this.boolExibeGerClientes = true;
                 this.boolExibeGerHospedagens = false;
-				
+
                 this.tmpEquips.clear();
                 this.tmpChales.clear();
             }
@@ -314,7 +332,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerChales = false;
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = true;
-				
+
                 this.tmpEquips.clear();
                 this.tmpChales.clear();
             }
@@ -332,27 +350,37 @@ public class ManageBeanAdmin
     {
         trocarAbaGerEquip(ABA_GER_EQUIPS_VISUAL_EQUIPS);
     }
-    
+
     public void ativarAbaGerChalesInserirChale(AjaxBehaviorEvent event)
     {
         trocarAbaGerChales(ABA_GER_CHALES_INSERIR_CHALE);
     }
-    
+
     public void ativarAbaGerChalesVisualChales(AjaxBehaviorEvent event)
     {
         trocarAbaGerChales(ABA_GER_CHALES_VISUAL_CHALES);
     }
-    
+
     public void ativarAbaGerClientesInserirCliente(AjaxBehaviorEvent event)
     {
         trocarAbaGerClientes(ABA_GER_CLIENTES_INSERIR_CLIENTE);
     }
-    
+
     public void ativarAbaGerClientesVisualChales(AjaxBehaviorEvent event)
     {
         trocarAbaGerClientes(ABA_GER_CLIENTES_VISUAL_CLIENTES);
     }
-    
+
+    public void ativarAbaGerHospsRealizarHosp(AjaxBehaviorEvent event)
+    {
+        trocarAbaGerHosps(ABA_GER_HOSPS_REALIZAR_HOSP);
+    }
+
+    public void ativarAbaGerHospsVisualHosps(AjaxBehaviorEvent event)
+    {
+        trocarAbaGerHosps(ABA_GER_HOSPS_VISUAL_HOSPS);
+    }
+
     private void trocarAbaGerEquip(byte aba)
     {
         switch (aba)
@@ -378,52 +406,82 @@ public class ManageBeanAdmin
             break;
         }
     }
-    
+
     private void trocarAbaGerChales(byte aba)
     {
-        switch(aba)
+        switch (aba)
         {
             case ABA_GER_CHALES_INSERIR_CHALE:
             {
                 this.strExibeInserirChale = "active";
                 this.strExibeVisualChales = "";
-                
+
                 this.boolExibeInserirChale = true;
                 this.boolExibeVisualChales = false;
-            } break;
-                
+            }
+            break;
+
             case ABA_GER_CHALES_VISUAL_CHALES:
             {
                 this.strExibeInserirChale = "";
                 this.strExibeVisualChales = "active";
-                
+
                 this.boolExibeInserirChale = false;
                 this.boolExibeVisualChales = true;
-            } break;
+            }
+            break;
         }
     }
-    
+
     private void trocarAbaGerClientes(byte aba)
     {
-        switch(aba)
+        switch (aba)
         {
             case ABA_GER_CLIENTES_INSERIR_CLIENTE:
             {
                 this.strExibeInserirCliente = "active";
                 this.strExibeVisualClientes = "";
-                
+
                 this.boolExibeInserirCliente = true;
                 this.boolExibeVisualClientes = false;
-            } break;
-                
+            }
+            break;
+
             case ABA_GER_CLIENTES_VISUAL_CLIENTES:
             {
                 this.strExibeInserirCliente = "";
                 this.strExibeVisualClientes = "active";
-                
+
                 this.boolExibeInserirCliente = false;
                 this.boolExibeVisualClientes = true;
-            } break;
+            }
+            break;
+        }
+    }
+
+    private void trocarAbaGerHosps(byte aba)
+    {
+        switch (aba)
+        {
+            case ABA_GER_HOSPS_REALIZAR_HOSP:
+            {
+                this.strExibeRealizarHosp = "active";
+                this.strExibeVisualHosps = "";
+
+                this.boolExibeRealizarHosp = true;
+                this.boolExibeVisualHosps = false;
+            }
+            break;
+
+            case ABA_GER_HOSPS_VISUAL_HOSPS:
+            {
+                this.strExibeRealizarHosp = "";
+                this.strExibeVisualHosps = "active";
+
+                this.boolExibeRealizarHosp = false;
+                this.boolExibeVisualHosps = true;
+            }
+            break;
         }
     }
 
@@ -682,19 +740,63 @@ public class ManageBeanAdmin
         this.strExibeVisualClientes = strExibeVisualClientes;
     }
 
-    public Chale getTmpChale() {
+    public Chale getTmpChale()
+    {
         return tmpChale;
     }
 
-    public void setTmpChale(Chale tmpChale) {
+    public void setTmpChale(Chale tmpChale)
+    {
         this.tmpChale = tmpChale;
     }
 
-    public Map<Equipamento, Boolean> getTmpMapSelectedEquips() {
+    public Map<Equipamento, Boolean> getTmpMapSelectedEquips()
+    {
         return tmpMapSelectedEquips;
     }
 
-    public void setTmpMapSelectedEquips(Map<Equipamento, Boolean> tmpMapSelectedEquips) {
+    public void setTmpMapSelectedEquips(Map<Equipamento, Boolean> tmpMapSelectedEquips)
+    {
         this.tmpMapSelectedEquips = tmpMapSelectedEquips;
+    }
+
+    public boolean isBoolExibeRealizarHosp()
+    {
+        return boolExibeRealizarHosp;
+    }
+
+    public void setBoolExibeRealizarHosp(boolean boolExibeRealizarHosp)
+    {
+        this.boolExibeRealizarHosp = boolExibeRealizarHosp;
+    }
+
+    public boolean isBoolExibeVisualHosps()
+    {
+        return boolExibeVisualHosps;
+    }
+
+    public void setBoolExibeVisualHosps(boolean boolExibeVisualHosps)
+    {
+        this.boolExibeVisualHosps = boolExibeVisualHosps;
+    }
+
+    public String getStrExibeRealizarHosp()
+    {
+        return strExibeRealizarHosp;
+    }
+
+    public void setStrExibeRealizarHosp(String strExibeRealizarHosp)
+    {
+        this.strExibeRealizarHosp = strExibeRealizarHosp;
+    }
+
+    public String getStrExibeVisualHosps()
+    {
+        return strExibeVisualHosps;
+    }
+
+    public void setStrExibeVisualHosps(String strExibeVisualHosps)
+    {
+        this.strExibeVisualHosps = strExibeVisualHosps;
     }
 }

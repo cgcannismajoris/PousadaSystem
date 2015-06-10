@@ -1,9 +1,66 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     
-    HOSPEDAGEM.
+    <!-- ABAS DE NAVEGAÇÃO -->
+    <div class="row">
+        <h:form id="frmTabsHospedagem">
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" id="abaRealizarHospedagem" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeRealizarHosp}"
+                    >
+                    <h:commandLink value="Realizar Hospedagem">
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerHospsRealizarHosp}"
+                                render=":abaRealizarHospedagem :frmTabsHospedagem :paineis-hospedagem :frmRealizarHospedagem :frmVisualHospedagens"/>
+                    </h:commandLink>
+                </li>
+                <li role="presentation" id="abaVisualVisualHospedagens" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeVisualHosps}">
+                    <h:commandLink value="Visualizar Hospedagens">
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerHospsVisualHosps}"
+                                render=":abaRealizarHospedagem :frmTabsHospedagem :paineis-hospedagem :frmRealizarHospedagem :frmVisualHospedagens"/>
+                    </h:commandLink>
+                </li>
+            </ul>
+        </h:form>
+    </div>
+
+    <div class="row">
+        <!-- FORMULÁRIO DE INSERÇÃO DE EQUIPAMENTO -->
+        <h:panelGroup id="paineis-hospedagem">
+            <h:form id="frmRealizarHospedagem" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeRealizarHosp}">
+                <div class="row">
+                    <br/>
+                    <div class="col-md-10">
+                        <ui:include src="../../../formularios/equipamento/input_equipamento.xhtml">
+                            <ui:param name="inputDescricao"
+                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpEquip.descricao}"/>
+                        </ui:include>
+                        <br/><br/>
+                        <h:commandButton value="Inserir" class="btn btn-success"
+                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip}">
+                        </h:commandButton>
+                        <br/><br/>
+                    </div>
+
+                    <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
+                    <h:message for="descricao" class="alert alert-warning"/>
+
+                </div>
+            </h:form>
+            
+            <h:form id="frmVisualHospedagens" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualHosps}">
+                <div class="row">
+                    Visualização.
+
+                    <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
+                    <h:message for="descricao" class="alert alert-warning"/>
+
+                </div>
+            </h:form>
+        </h:panelGroup>
+    </div>
     
 </html>
 

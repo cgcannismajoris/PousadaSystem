@@ -3,5 +3,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     
+    <!-- Quantidade de Acompanhantes -->
+    <div class="col-md-3 col-centered">
+        <h:outputLabel value="Qtd. acompanhantes" for="qtdAcomps"/>
+        <h:inputText id="qtdAcomps" class="form-control"
+                     value="#{inputQtdAcomps}"/>
+    </div>
+    
+    <!-- Data de Início -->
+    <div class="col-md-3 col-centered">
+        <h:outputLabel value="Data de início: " for="dataInicio"/>
+        <h:inputText id="dataInicio" class="form-control"
+                     value="#{inputDataInicio}"/>
+    </div>
+    
+    <!-- Data de Saída -->
+    <div class="col-md-3 col-centered">
+        <h:outputLabel value="Data de saída: " for="dataSaida"/>
+        <h:inputText id="dataSaida" class="form-control"
+                     value="#{inputDataDaida}"/>
+    </div>
+    
+    <!-- Previsão -->
+    <div class="col-md-3 col-centered">
+        <h:outputLabel value="Previsão: " for="previsao"/>
+        <h:inputText id="previsao" class="form-control"
+                     value="#{inputPrevisao}"/>
+    </div>
+    
+    
 </html>
 
