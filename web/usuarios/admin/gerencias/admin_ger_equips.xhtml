@@ -4,18 +4,21 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
     <div class="row">
         <h:form id="frmTabs">
             <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" id="abaInserirEquip" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeInserirEquip}">
+                <li role="presentation" id="abaInserirEquip" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeInserirEquip}"
+                    >
                     <h:commandLink value="Inserir Equipamento">
-                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsInserirEquip}" render="@all"/>
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsInserirEquip}"
+                                render=":frmTabs :abaInserirEquip : abaVisualEquips :paineis :frmInserirEquips :frmVisualEquips"/>
                     </h:commandLink>
                 </li>
-                <li role="presentation" id="abaVisualEquips" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeVisualEquips}">
+                <li role="presentation" id="abaVisualEquips" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeVisualEquips}"
+                    action="dashboard">
                     <h:commandLink value="Visualizar Equipamentos">
-                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsVisualEquips}" render="@all"/>
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsVisualEquips}"
+                                render=":frmTabs :abaInserirEquip :abaVisualEquips :paineis :frmInserirEquips :frmVisualEquips"/>
                     </h:commandLink>
                 </li>
             </ul>
@@ -25,38 +28,40 @@
     <div class="row">
 
         <!-- FORMULÁRIO DE INSERÇÃO DE EQUIPAMENTO -->
-        <h:panelGroup id="panelInserirEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeInserirEquip}">
-            
-            <div class="row">
-                <br/>
-                <div class="col-md-10">
-                    <ui:include src="../../../formularios/equipamento/input_equipamento.xhtml">
-                        <ui:param name="inputDescricao" 
-                                  value="#{sessaoUsuario.usuarioAuth.adminMB.tmpEquip.descricao}"/>
-                    </ui:include>
-                    <br/><br/>
-                    <h:commandButton value="Inserir" class="btn btn-success" 
-                                     action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip}"/>
-                    <br/><br/>
-                </div>
-            </div>
+        <h:panelGroup id="paineis">
 
-        </h:panelGroup>
-        
-        <!-- FORMULÁRIO DE VISUALIZAÇÃO DE EQUIPAMENTO -->
-        <h:panelGroup id="panelVisualizarEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualEquips}">
-            
-            <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquips()}" var="equips">
-                <h:column>
-                    <f:facet name="header">Id</f:facet>
-                    #{equips.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Descrição</f:facet>
-                    #{equips.descricao}
-                </h:column>
-            </h:dataTable>
-            
+            <h:form id="frmInserirEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeInserirEquip}">
+                <div class="row">
+                    <br/>
+                    <div class="col-md-10">
+                        <ui:include src="../../../formularios/equipamento/input_equipamento.xhtml">
+                            <ui:param name="inputDescricao"
+                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpEquip.descricao}"/>
+                        </ui:include>
+                        <br/><br/>
+                        <h:commandButton value="Inserir" class="btn btn-success"
+                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip}">
+                        </h:commandButton>
+                        <br/><br/>
+                    </div>
+                </div>
+            </h:form>
+
+            <!-- FORMULÁRIO DE VISUALIZAÇÃO DE EQUIPAMENTO -->
+
+            <h:form id="frmVisualEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualEquips}">
+                <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquips()}" var="equips">
+                    <h:column>
+                        <f:facet name="header">Id</f:facet>
+                            #{equips.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Descrição</f:facet>
+                            #{equips.descricao}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+
         </h:panelGroup>
 
     </div>

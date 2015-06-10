@@ -157,7 +157,7 @@ public class EquipamentoDAO {
 
         con = GerenciadorDB.getInstance().abrirConexao();
         String sql
-                = "INSERT INTO Equipamento (descricao) VALUES (?);";
+                = "INSERT INTO equipamento (descricao) VALUES (?);";
 
         PreparedStatement stmt = null;
 

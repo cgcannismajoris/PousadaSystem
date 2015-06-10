@@ -65,7 +65,6 @@ public class ManageBeanAdmin
                             "Sucesso ao inserir."
                     )
             );
-            tmpEquip = new Equipamento();
             return (null);
         } else
         {

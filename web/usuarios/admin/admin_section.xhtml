@@ -26,14 +26,14 @@
                                 <h:commandLink value="Perfil">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelPerfil}"
-                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
+                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerEquips}">
                                 <h:commandLink value="Gerência de Equipamentos">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelGerEquips}"
-                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
+                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerChales}">
@@ -65,42 +65,21 @@
                 <div class="col-md-4 dashboard-painel-actions">
 
                     <!-- FORMULÁRIO DE PERFIL -->
-                    <h:panelGroup id="painelPerfil">
-                        <h:form id="frmPerfilAdmin" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibePerfil}">
+                    <h:panelGroup id="outrosforms">
+
+                        <h:panelGroup id="frmPerfilAdmin" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibePerfil}">
                             <ui:include src="admin_perfil.xhtml"/>
-                        </h:form>
-                    </h:panelGroup>
+                        </h:panelGroup>
 
-                    <!-- ############## FORMULÁRIOS DE GERÊNCIAS ########### -->
-                    <!-- fazer include -->
-                    <h:panelGroup id="painelGerEquips">
-                        <h:form id="frmGerEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerEquips}">
-                            <ui:include src="gerencias/admin_ger_equips.xhtml"/>
-                        </h:form>
-                        <h:messages globalOnly="true" class="alert alert-danger"/>
+                        <!-- ############## FORMULÁRIOS DE GERÊNCIAS ########### -->
+                        <h:panelGroup id="frmGerEquips">
+                            <ui:fragment rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerEquips}">
+                                <ui:include src="gerencias/admin_ger_equips.xhtml"/>
+                            </ui:fragment>
+                            <h:messages globalOnly="true"/>
+                        </h:panelGroup>
+                        
                     </h:panelGroup>
-
-                    <h:panelGroup id="painelGerChales">
-                        <h:form id="frmGerChales" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerChales}">
-                            <ui:include src="gerencias/admin_ger_chales.xhtml"/>
-                        </h:form>
-                        <h:messages globalOnly="true" class="alert alert-danger"/>
-                    </h:panelGroup>
-
-                    <h:panelGroup id="painelGerClientes">
-                        <h:form id="frmGerClientes" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerClientes}">
-                            CLIENTES
-                        </h:form>
-                        <h:messages globalOnly="true" class="alert alert-danger"/>
-                    </h:panelGroup>
-
-                    <h:panelGroup id="painelGerHospedagens">
-                        <h:form id="frmGerHospedagens" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerHospedagens}">
-                            HOSPEDAGEM
-                        </h:form>
-                        <h:messages globalOnly="true" class="alert alert-danger"/>
-                    </h:panelGroup>
-
                     <!-- ################################################### -->
 
                 </div>
