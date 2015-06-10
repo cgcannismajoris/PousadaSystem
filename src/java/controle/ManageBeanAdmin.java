@@ -1,14 +1,21 @@
 package controle;
 
 // ManageBean específico para Administrador
+import dao.ChaleDAO;
 import dao.EquipamentoDAO;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.StringTokenizer;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import modelo.Administrador;
+import modelo.Chale;
 import modelo.Equipamento;
 
 @ManagedBean(name = "adminMB")
@@ -71,7 +78,13 @@ public class ManageBeanAdmin
     // Equipamento temporário
     private Equipamento tmpEquip = new Equipamento();
     private ArrayList<Equipamento> tmpEquips = new ArrayList<>();
-	
+    
+    private Map<Equipamento, Boolean> tmpMapSelectedEquips = new HashMap<>();
+    
+    // Chalé temporário
+    private Chale tmpChale = new Chale();
+    private ArrayList<Chale> tmpChales = new ArrayList<>();
+    
     public String salvarEquip()
     {
         System.out.println(tmpEquip.getDescricao());
@@ -123,9 +136,66 @@ public class ManageBeanAdmin
         return ("dashboard");
     }
     
+    public String salvarChale(){
+        
+        //Insere os equipamentos selecionados
+        for(Map.Entry<Equipamento, Boolean> item : this.tmpMapSelectedEquips.entrySet()){  
+            if(item.getValue() == true){
+                this.tmpChale.addEquipamento(item.getKey());
+            }
+        }
+        
+        if (ChaleDAO.inserirChaleDAO(tmpChale))
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_INFO,
+                            "Sucesso!",
+                            "Sucesso ao inserir."
+                    )
+            );
+            
+            this.tmpChale.setDiaria(new BigDecimal(0.0));
+            this.tmpChale.setEquipamentos(new ArrayList<>());
+            this.tmpChale.setId(0);
+            this.tmpChale.setNumero(0);
+            this.tmpEquip.setId(0);
+            
+            return (null);
+        } else
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Erro!",
+                            "Erro ao inserir equipamento."
+                    )
+            );
+            return (null);
+        }
+    }
+    
     public ArrayList<Equipamento> carregarTodosEquips(){
         this.tmpEquips = EquipamentoDAO.obterTodos();
         return (this.tmpEquips);
+    }
+
+    public ArrayList<Equipamento> carregarTodosEquipsForNewChale(){
+        this.tmpEquips = EquipamentoDAO.obterTodos();
+        
+        //Adiciona os equipamentos no mapa
+        for(Equipamento item : this.tmpEquips){
+            this.tmpMapSelectedEquips.put(item, false);
+        }
+        
+        return (this.tmpEquips);
+    }
+    
+    public ArrayList<Chale> carregarTodosChales(){
+        this.tmpChales = ChaleDAO.obterTodos();
+        return (this.tmpChales);
     }
 	
     public void ativarPainelPerfil(AjaxBehaviorEvent event)
@@ -171,7 +241,8 @@ public class ManageBeanAdmin
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = false;
 				
-				this.tmpEquips.clear();
+                this.tmpEquips.clear();
+                this.tmpChales.clear();
             }
             break;
 
@@ -188,6 +259,8 @@ public class ManageBeanAdmin
                 this.boolExibeGerChales = false;
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = false;
+                
+                this.tmpChales.clear();
             }
             break;
 
@@ -224,6 +297,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerHospedagens = false;
 				
                 this.tmpEquips.clear();
+                this.tmpChales.clear();
             }
             break;
 
@@ -242,6 +316,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerHospedagens = true;
 				
                 this.tmpEquips.clear();
+                this.tmpChales.clear();
             }
             break;
 
@@ -605,5 +680,21 @@ public class ManageBeanAdmin
     public void setStrExibeVisualClientes(String strExibeVisualClientes)
     {
         this.strExibeVisualClientes = strExibeVisualClientes;
+    }
+
+    public Chale getTmpChale() {
+        return tmpChale;
+    }
+
+    public void setTmpChale(Chale tmpChale) {
+        this.tmpChale = tmpChale;
+    }
+
+    public Map<Equipamento, Boolean> getTmpMapSelectedEquips() {
+        return tmpMapSelectedEquips;
+    }
+
+    public void setTmpMapSelectedEquips(Map<Equipamento, Boolean> tmpMapSelectedEquips) {
+        this.tmpMapSelectedEquips = tmpMapSelectedEquips;
     }
 }

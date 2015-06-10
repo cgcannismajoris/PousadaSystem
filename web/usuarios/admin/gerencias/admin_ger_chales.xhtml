@@ -34,32 +34,56 @@
                 <div class="row">
                     <br/>
                     <div class="col-md-10">
-                        <ui:include src="../../../formularios/equipamento/input_equipamento.xhtml">
-                            <ui:param name="inputDescricao"
-                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpEquip.descricao}"/>
+
+                        <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
+                        <h:message for="descricao" class="alert alert-warning"/>
+
+                        <br/>
+
+                        <ui:include src="../../../formularios/chale/input_chale.xhtml">
+                            <ui:param name="inputNumero"
+                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpChale.numero}"/>
+                            <ui:param name="inputDiaria"
+                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpChale.diaria}"/>
                         </ui:include>
+
+                        <br/><h:outputLabel value="Equipamentos:"/><br/>
+
+                        <ui:repeat var="item" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquipsForNewChale()}">
+                            <h:selectBooleanCheckbox value="#{sessaoUsuario.usuarioAuth.adminMB.tmpMapSelectedEquips[item]}"/>
+                            <h:outputText value="#{item}" />
+                            <br/>
+                        </ui:repeat>
+
                         <br/><br/>
                         <h:commandButton value="Inserir" class="btn btn-success"
-                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip}">
+                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarChale}">
                         </h:commandButton>
                         <br/><br/>
                     </div>
-
-                    <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
-                    <h:message for="descricao" class="alert alert-warning"/>
-
                 </div>
             </h:form>
             
-            <h:form id="frmInserirVisualChales" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualChales}">
-                <div class="row">
-                    Visualização.
-
+            <div style="height: 500px; overflow: auto;">
+                <h:form id="frmInserirVisualChales" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualChales}">
+                    <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosChales()}" var="chale">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            <h:outputLabel value="#{chale.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Número</f:facet>
+                            <h:outputLabel value="#{chale.numero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Diária</f:facet>
+                            <h:outputLabel value="#{chale.diaria}"/>
+                        </h:column>
+                    </h:dataTable>
                     <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
                     <h:message for="descricao" class="alert alert-warning"/>
-
-                </div>
-            </h:form>
+                </h:form>
+            </div>
         </h:panelGroup>
     </div>
 

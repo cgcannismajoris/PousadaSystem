@@ -17,6 +17,8 @@ public class Chale
 
     private ArrayList<Equipamento> equipamentos = new ArrayList<>();
     
+    public Chale() { }
+    
     public Chale(Integer id, Integer numero, BigDecimal diaria)
     {
         this.id = id;
