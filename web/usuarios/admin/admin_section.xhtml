@@ -7,7 +7,7 @@
 
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        
+
     </h:head>
 
     <section id="admin-section" class="admin-section">
@@ -26,22 +26,37 @@
                                 <h:commandLink value="Perfil">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelPerfil}"
-                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips"/>
+                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerEquips}">
                                 <h:commandLink value="Gerência de Equipamentos">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelGerEquips}"
-                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips"/>
+                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
                                 </h:commandLink>
                             </li>
-                            <li role="presentation" class="">
-                                <h:commandLink value="Gerência de CHalés">
+                            <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerChales}">
+                                <h:commandLink value="Gerência de Chalés">
+                                    <f:ajax listener="#{sessaoUsuario.
+                                                        usuarioAuth.adminMB.ativarPainelGerChales}"
+                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
                                 </h:commandLink>
                             </li>
-                            <li role="presentation" class=""><a href="#">Gerência de Clientes</a></li>
-                            <li role="presentation" class=""><a href="#">Gerência de Hospedagens</a></li>
+                            <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerClientes}">
+                                <h:commandLink value="Gerência de Clientes">
+                                    <f:ajax listener="#{sessaoUsuario.
+                                                        usuarioAuth.adminMB.ativarPainelGerClientes}"
+                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
+                                </h:commandLink>
+                            </li>
+                            <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerHospedagens}">
+                                <h:commandLink value="Gerência de Hospedagens">
+                                    <f:ajax listener="#{sessaoUsuario.
+                                                        usuarioAuth.adminMB.ativarPainelGerHospedagens}"
+                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
+                                </h:commandLink>
+                            </li>
                         </ul>
                     </div>
                 </h:form>
@@ -64,14 +79,28 @@
                         </h:form>
                         <h:messages globalOnly="true" class="alert alert-danger"/>
                     </h:panelGroup>
-                    
+
                     <h:panelGroup id="painelGerChales">
-                        <h:form id="frmGerChales" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerChale}">
+                        <h:form id="frmGerChales" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerChales}">
                             <ui:include src="gerencias/admin_ger_chales.xhtml"/>
                         </h:form>
                         <h:messages globalOnly="true" class="alert alert-danger"/>
                     </h:panelGroup>
-                    
+
+                    <h:panelGroup id="painelGerClientes">
+                        <h:form id="frmGerClientes" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerClientes}">
+                            CLIENTES
+                        </h:form>
+                        <h:messages globalOnly="true" class="alert alert-danger"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup id="painelGerHospedagens">
+                        <h:form id="frmGerHospedagens" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerHospedagens}">
+                            HOSPEDAGEM
+                        </h:form>
+                        <h:messages globalOnly="true" class="alert alert-danger"/>
+                    </h:panelGroup>
+
                     <!-- ################################################### -->
 
                 </div>
