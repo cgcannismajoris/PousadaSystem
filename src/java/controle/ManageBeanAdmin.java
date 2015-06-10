@@ -2,9 +2,9 @@ package controle;
 
 // ManageBean específico para Administrador
 import dao.EquipamentoDAO;
+import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -19,16 +19,22 @@ public class ManageBeanAdmin
 
     public final byte PAINEL_PERFIL = 1;
     public final byte PAINEL_GER_EQUIPS = 2;
-    public final byte PAINEL_GER_CHALE = 3;
+    public final byte PAINEL_GER_CHALES = 3;
+    public final byte PAINEL_GER_CLIENTES = 4;
+    public final byte PAINEL_GER_HOSPEDAGENS = 5;
 
     // Estados de interface de paineis
     private String strExibePerfil = "active";     // "active" ou ""
     private String strExibeGerEquips = "";
-    private String strExibeGerChale = "";
+    private String strExibeGerChales = "";
+    private String strExibeGerClientes = "";
+    private String strExibeGerHospedagens = "";
 
     private boolean boolExibePerfil = true;
     private boolean boolExibeGerEquips;
-    private boolean boolExibeGerChale;
+    private boolean boolExibeGerChales;
+    private boolean boolExibeGerClientes;
+    private boolean boolExibeGerHospedagens;
 
     // Estados de interface de abas
     // Gerência de Equipamento
@@ -40,47 +46,46 @@ public class ManageBeanAdmin
 
     private String strExibeInserirEquip = "active";
     private String strExibeVisualEquips = "";
-    
+
     // Equipamento temporário
     private Equipamento tmpEquip = new Equipamento();
-    
+    private ArrayList<Equipamento> tmpEquips = new ArrayList<>();
+	
     public String salvarEquip()
     {
         System.out.println(tmpEquip.getDescricao());
-        
+
         if (EquipamentoDAO.inserirEquipamentoDAO(tmpEquip))
         {
-            FacesContext.getCurrentInstance().addMessage
-            (
-                null,
-                new FacesMessage
-                (
-                    FacesMessage.SEVERITY_INFO,
-                    "Sucesso!",
-                    "Sucesso ao inserir."
-                )
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_INFO,
+                            "Sucesso!",
+                            "Sucesso ao inserir."
+                    )
             );
             tmpEquip = new Equipamento();
-              return (null);
+            return (null);
         } else
         {
-            FacesContext.getCurrentInstance().addMessage
-            (
-                null,
-                new FacesMessage
-                (
-                    FacesMessage.SEVERITY_ERROR,
-                    "Erro!",
-                    "Erro ao inserir equipamento."
-                )
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Erro!",
+                            "Erro ao inserir equipamento."
+                    )
             );
             return (null);
         }
-        
-       
     }
-    
 
+    public ArrayList<Equipamento> carregarTodosEquips(){
+        this.tmpEquips = EquipamentoDAO.obterTodos();
+        return (this.tmpEquips);
+    }
+	
     public void ativarPainelPerfil(AjaxBehaviorEvent event)
     {
         this.trocarPainel(PAINEL_PERFIL);
@@ -91,6 +96,21 @@ public class ManageBeanAdmin
         this.trocarPainel(PAINEL_GER_EQUIPS);
     }
 
+    public void ativarPainelGerChales(AjaxBehaviorEvent event)
+    {
+        this.trocarPainel(PAINEL_GER_CHALES);
+    }
+
+    public void ativarPainelGerClientes(AjaxBehaviorEvent event)
+    {
+        this.trocarPainel(PAINEL_GER_CLIENTES);
+    }
+    
+    public void ativarPainelGerHospedagens(AjaxBehaviorEvent event)
+    {
+        this.trocarPainel(PAINEL_GER_HOSPEDAGENS);
+    }
+
     private void trocarPainel(byte painel)
     {
         switch (painel)
@@ -99,11 +119,17 @@ public class ManageBeanAdmin
             {
                 this.strExibePerfil = "active";
                 this.strExibeGerEquips = "";
-                this.strExibeGerChale = "";
+                this.strExibeGerChales = "";
+                this.strExibeGerClientes = "";
+                this.strExibeGerHospedagens = "";
 
                 this.boolExibePerfil = true;
                 this.boolExibeGerEquips = false;
-                this.boolExibeGerChale = false;
+                this.boolExibeGerChales = false;
+                this.boolExibeGerClientes = false;
+                this.boolExibeGerHospedagens = false;
+				
+				this.tmpEquips.clear();
             }
             break;
 
@@ -111,21 +137,80 @@ public class ManageBeanAdmin
             {
                 this.strExibePerfil = "";
                 this.strExibeGerEquips = "active";
-                this.strExibeGerChale = "";
+                this.strExibeGerChales = "";
+                this.strExibeGerClientes = "";
+                this.strExibeGerHospedagens = "";
 
                 this.boolExibePerfil = false;
                 this.boolExibeGerEquips = true;
-                this.boolExibeGerChale = false;
+                this.boolExibeGerChales = false;
+                this.boolExibeGerClientes = false;
+                this.boolExibeGerHospedagens = false;
             }
             break;
+
+            case PAINEL_GER_CHALES:
+            {
+                this.strExibePerfil = "";
+                this.strExibeGerEquips = "";
+                this.strExibeGerChales = "active";
+                this.strExibeGerClientes = "";
+                this.strExibeGerHospedagens = "";
+
+                this.boolExibePerfil = false;
+                this.boolExibeGerEquips = false;
+                this.boolExibeGerChales = true;
+                this.boolExibeGerClientes = false;
+                this.boolExibeGerHospedagens = false;
+				
+				this.tmpEquips.clear();
+            }
+            break;
+
+            case PAINEL_GER_CLIENTES:
+            {
+                this.strExibePerfil = "";
+                this.strExibeGerEquips = "";
+                this.strExibeGerChales = "";
+                this.strExibeGerClientes = "active";
+                this.strExibeGerHospedagens = "";
+
+                this.boolExibePerfil = false;
+                this.boolExibeGerEquips = false;
+                this.boolExibeGerChales = false;
+                this.boolExibeGerClientes = true;
+                this.boolExibeGerHospedagens = false;
+				
+				this.tmpEquips.clear();
+            }
+            break;
+
+            case PAINEL_GER_HOSPEDAGENS:
+            {
+                this.strExibePerfil = "";
+                this.strExibeGerEquips = "";
+                this.strExibeGerChales = "";
+                this.strExibeGerClientes = "";
+                this.strExibeGerHospedagens = "active";
+
+                this.boolExibePerfil = false;
+                this.boolExibeGerEquips = false;
+                this.boolExibeGerChales = false;
+                this.boolExibeGerClientes = false;
+                this.boolExibeGerHospedagens = true;
+				
+				this.tmpEquips.clear();
+            }
+            break;
+
         }
     }
-    
+
     public void ativarAbaGerEquipsInserirEquip(AjaxBehaviorEvent event)
     {
         trocarAbaGerEquip(ABA_GER_EQUIPS_INSERIR_EQUIP);
     }
-    
+
     public void ativarAbaGerEquipsVisualEquips(AjaxBehaviorEvent event)
     {
         trocarAbaGerEquip(ABA_GER_EQUIPS_VISUAL_EQUIPS);
@@ -187,14 +272,14 @@ public class ManageBeanAdmin
         this.strExibeGerEquips = strExibeGerEquips;
     }
 
-    public String getStrExibeGerChale()
+    public String getStrExibeGerChales()
     {
-        return strExibeGerChale;
+        return strExibeGerChales;
     }
 
-    public void setStrExibeGerChale(String strExibeGerChale)
+    public void setStrExibeGerChales(String strExibeGerChales)
     {
-        this.strExibeGerChale = strExibeGerChale;
+        this.strExibeGerChales = strExibeGerChales;
     }
 
     public boolean isBoolExibePerfil()
@@ -217,14 +302,14 @@ public class ManageBeanAdmin
         this.boolExibeGerEquips = boolExibeGerEquips;
     }
 
-    public boolean isBoolExibeGerChale()
+    public boolean isBoolExibeGerChales()
     {
-        return boolExibeGerChale;
+        return boolExibeGerChales;
     }
 
-    public void setBoolExibeGerChale(boolean boolExibeGerChale)
+    public void setBoolExibeGerChales(boolean boolExibeGerChales)
     {
-        this.boolExibeGerChale = boolExibeGerChale;
+        this.boolExibeGerChales = boolExibeGerChales;
     }
 
     public byte getPAINEL_PERFIL()
@@ -237,9 +322,9 @@ public class ManageBeanAdmin
         return PAINEL_GER_EQUIPS;
     }
 
-    public byte getPAINEL_GER_CHALE()
+    public byte getPAINEL_GER_CHALES()
     {
-        return PAINEL_GER_CHALE;
+        return PAINEL_GER_CHALES;
     }
 
     public boolean isBoolExibeInserirEquip()
@@ -290,5 +375,45 @@ public class ManageBeanAdmin
     public void setTmpEquip(Equipamento tmpEquip)
     {
         this.tmpEquip = tmpEquip;
+    }
+
+    public String getStrExibeGerClientes()
+    {
+        return strExibeGerClientes;
+    }
+
+    public void setStrExibeGerClientes(String strExibeGerClientes)
+    {
+        this.strExibeGerClientes = strExibeGerClientes;
+    }
+
+    public String getStrExibeGerHospedagens()
+    {
+        return strExibeGerHospedagens;
+    }
+
+    public void setStrExibeGerHospedagens(String strExibeGerHospedagens)
+    {
+        this.strExibeGerHospedagens = strExibeGerHospedagens;
+    }
+
+    public boolean isBoolExibeGerClientes()
+    {
+        return boolExibeGerClientes;
+    }
+
+    public void setBoolExibeGerClientes(boolean boolExibeGerClientes)
+    {
+        this.boolExibeGerClientes = boolExibeGerClientes;
+    }
+
+    public boolean isBoolExibeGerHospedagens()
+    {
+        return boolExibeGerHospedagens;
+    }
+
+    public void setBoolExibeGerHospedagens(boolean boolExibeGerHospedagens)
+    {
+        this.boolExibeGerHospedagens = boolExibeGerHospedagens;
     }
 }

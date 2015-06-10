@@ -9,15 +9,13 @@
         <h:form id="frmTabs">
             <ul class="nav nav-tabs nav-justified">
                 <li role="presentation" id="abaInserirEquip" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeInserirEquip}">
-                    <h:commandLink value="Inserir Equipamento" action="dashboard">
-                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsInserirEquip}" 
-                                render=":frmTabs"/>
+                    <h:commandLink value="Inserir Equipamento">
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsInserirEquip}" render="@all"/>
                     </h:commandLink>
                 </li>
                 <li role="presentation" id="abaVisualEquips" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeVisualEquips}">
-                    <h:commandLink value="Visualizar Equipamentos" action="dashboard">
-                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsVisualEquips}"
-                                render=":frmTabs"/>
+                    <h:commandLink value="Visualizar Equipamentos">
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsVisualEquips}" render="@all"/>
                     </h:commandLink>
                 </li>
             </ul>
@@ -28,7 +26,7 @@
 
         <!-- FORMULÁRIO DE INSERÇÃO DE EQUIPAMENTO -->
         <h:panelGroup id="panelInserirEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeInserirEquip}">
-
+            
             <div class="row">
                 <br/>
                 <div class="col-md-10">
@@ -37,17 +35,28 @@
                                   value="#{sessaoUsuario.usuarioAuth.adminMB.tmpEquip.descricao}"/>
                     </ui:include>
                     <br/><br/>
-                    <h:commandButton value="Inserir" class="btn btn-success"
+                    <h:commandButton value="Inserir" class="btn btn-success" 
                                      action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip}"/>
                     <br/><br/>
                 </div>
             </div>
 
         </h:panelGroup>
-
+        
         <!-- FORMULÁRIO DE VISUALIZAÇÃO DE EQUIPAMENTO -->
         <h:panelGroup id="panelVisualizarEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualEquips}">
-            Visualizar Equips
+            
+            <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquips()}" var="equips">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{equips.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Descrição</f:facet>
+                    #{equips.descricao}
+                </h:column>
+            </h:dataTable>
+            
         </h:panelGroup>
 
     </div>
