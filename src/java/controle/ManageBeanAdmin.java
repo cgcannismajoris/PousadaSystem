@@ -65,6 +65,10 @@ public class ManageBeanAdmin
                             "Sucesso ao inserir."
                     )
             );
+            
+            this.tmpEquip.setDescricao("");
+            this.tmpEquip.setId(0);
+            
             return (null);
         } else
         {
@@ -162,7 +166,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = false;
 				
-				this.tmpEquips.clear();
+                this.tmpEquips.clear();
             }
             break;
 
@@ -180,7 +184,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerClientes = true;
                 this.boolExibeGerHospedagens = false;
 				
-				this.tmpEquips.clear();
+                this.tmpEquips.clear();
             }
             break;
 
@@ -198,7 +202,7 @@ public class ManageBeanAdmin
                 this.boolExibeGerClientes = false;
                 this.boolExibeGerHospedagens = true;
 				
-				this.tmpEquips.clear();
+                this.tmpEquips.clear();
             }
             break;
 
