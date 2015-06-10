@@ -46,6 +46,27 @@ public class ManageBeanAdmin
 
     private String strExibeInserirEquip = "active";
     private String strExibeVisualEquips = "";
+    
+    // Gerência de Chalés
+    public final byte ABA_GER_CHALES_INSERIR_CHALE = 1;
+    public final byte ABA_GER_CHALES_VISUAL_CHALES = 2;
+    
+    private boolean boolExibeInserirChale = true;
+    private boolean boolExibeVisualChales;
+    
+    private String strExibeInserirChale = "active";
+    private String strExibeVisualChales = "";
+    
+    // Gerência de Clientes
+    public final byte ABA_GER_CLIENTES_INSERIR_CLIENTE = 1;
+    public final byte ABA_GER_CLIENTES_VISUAL_CLIENTES = 2;
+    
+    private boolean boolExibeInserirCliente = true;
+    private boolean boolExibeVisualClientes;
+    
+    private String strExibeInserirCliente = "active";
+    private String strExibeVisualClientes = "";
+    
 
     // Equipamento temporário
     private Equipamento tmpEquip = new Equipamento();
@@ -236,7 +257,27 @@ public class ManageBeanAdmin
     {
         trocarAbaGerEquip(ABA_GER_EQUIPS_VISUAL_EQUIPS);
     }
-
+    
+    public void ativarAbaGerChalesInserirChale(AjaxBehaviorEvent event)
+    {
+        trocarAbaGerChales(ABA_GER_CHALES_INSERIR_CHALE);
+    }
+    
+    public void ativarAbaGerChalesVisualChales(AjaxBehaviorEvent event)
+    {
+        trocarAbaGerChales(ABA_GER_CHALES_VISUAL_CHALES);
+    }
+    
+    public void ativarAbaGerClientesInserirCliente(AjaxBehaviorEvent event)
+    {
+        trocarAbaGerClientes(ABA_GER_CLIENTES_INSERIR_CLIENTE);
+    }
+    
+    public void ativarAbaGerClientesVisualChales(AjaxBehaviorEvent event)
+    {
+        trocarAbaGerClientes(ABA_GER_CLIENTES_VISUAL_CLIENTES);
+    }
+    
     private void trocarAbaGerEquip(byte aba)
     {
         switch (aba)
@@ -260,6 +301,54 @@ public class ManageBeanAdmin
                 this.boolExibeVisualEquips = true;
             }
             break;
+        }
+    }
+    
+    private void trocarAbaGerChales(byte aba)
+    {
+        switch(aba)
+        {
+            case ABA_GER_CHALES_INSERIR_CHALE:
+            {
+                this.strExibeInserirChale = "active";
+                this.strExibeVisualChales = "";
+                
+                this.boolExibeInserirChale = true;
+                this.boolExibeVisualChales = false;
+            } break;
+                
+            case ABA_GER_CHALES_VISUAL_CHALES:
+            {
+                this.strExibeInserirChale = "";
+                this.strExibeVisualChales = "active";
+                
+                this.boolExibeInserirChale = false;
+                this.boolExibeVisualChales = true;
+            } break;
+        }
+    }
+    
+    private void trocarAbaGerClientes(byte aba)
+    {
+        switch(aba)
+        {
+            case ABA_GER_CLIENTES_INSERIR_CLIENTE:
+            {
+                this.strExibeInserirCliente = "active";
+                this.strExibeVisualClientes = "";
+                
+                this.boolExibeInserirCliente = true;
+                this.boolExibeVisualClientes = false;
+            } break;
+                
+            case ABA_GER_CLIENTES_VISUAL_CLIENTES:
+            {
+                this.strExibeInserirCliente = "";
+                this.strExibeVisualClientes = "active";
+                
+                this.boolExibeInserirCliente = false;
+                this.boolExibeVisualClientes = true;
+            } break;
         }
     }
 
@@ -436,5 +525,85 @@ public class ManageBeanAdmin
     public void setBoolExibeGerHospedagens(boolean boolExibeGerHospedagens)
     {
         this.boolExibeGerHospedagens = boolExibeGerHospedagens;
+    }
+
+    public boolean isBoolExibeInserirChale()
+    {
+        return boolExibeInserirChale;
+    }
+
+    public void setBoolExibeInserirChale(boolean boolExibeInserirChale)
+    {
+        this.boolExibeInserirChale = boolExibeInserirChale;
+    }
+
+    public boolean isBoolExibeVisualChales()
+    {
+        return boolExibeVisualChales;
+    }
+
+    public void setBoolExibeVisualChales(boolean boolExibeVisualChales)
+    {
+        this.boolExibeVisualChales = boolExibeVisualChales;
+    }
+
+    public String getStrExibeInserirChale()
+    {
+        return strExibeInserirChale;
+    }
+
+    public void setStrExibeInserirChale(String strExibeInserirChale)
+    {
+        this.strExibeInserirChale = strExibeInserirChale;
+    }
+
+    public String getStrExibeVisualChales()
+    {
+        return strExibeVisualChales;
+    }
+
+    public void setStrExibeVisualChales(String strExibeVisualChales)
+    {
+        this.strExibeVisualChales = strExibeVisualChales;
+    }
+
+    public boolean isBoolExibeInserirCliente()
+    {
+        return boolExibeInserirCliente;
+    }
+
+    public void setBoolExibeInserirCliente(boolean boolExibeInserirCliente)
+    {
+        this.boolExibeInserirCliente = boolExibeInserirCliente;
+    }
+
+    public boolean isBoolExibeVisualClientes()
+    {
+        return boolExibeVisualClientes;
+    }
+
+    public void setBoolExibeVisualClientes(boolean boolExibeVisualClientes)
+    {
+        this.boolExibeVisualClientes = boolExibeVisualClientes;
+    }
+
+    public String getStrExibeInserirCliente()
+    {
+        return strExibeInserirCliente;
+    }
+
+    public void setStrExibeInserirCliente(String strExibeInserirCliente)
+    {
+        this.strExibeInserirCliente = strExibeInserirCliente;
+    }
+
+    public String getStrExibeVisualClientes()
+    {
+        return strExibeVisualClientes;
+    }
+
+    public void setStrExibeVisualClientes(String strExibeVisualClientes)
+    {
+        this.strExibeVisualClientes = strExibeVisualClientes;
     }
 }

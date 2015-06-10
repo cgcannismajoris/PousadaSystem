@@ -26,35 +26,35 @@
                                 <h:commandLink value="Perfil">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelPerfil}"
-                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips"/>
+                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips :frmGerChales :frmGerClientes :frmGerHospedagem"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerEquips}">
                                 <h:commandLink value="Gerência de Equipamentos">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelGerEquips}"
-                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips"/>
+                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips :frmGerChales :frmGerClientes :frmGerHospedagem"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerChales}">
                                 <h:commandLink value="Gerência de Chalés">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelGerChales}"
-                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
+                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips :frmGerChales :frmGerClientes :frmGerHospedagem"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerClientes}">
                                 <h:commandLink value="Gerência de Clientes">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelGerClientes}"
-                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
+                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips :frmGerChales :frmGerClientes :frmGerHospedagem"/>
                                 </h:commandLink>
                             </li>
                             <li role="presentation" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeGerHospedagens}">
                                 <h:commandLink value="Gerência de Hospedagens">
                                     <f:ajax listener="#{sessaoUsuario.
                                                         usuarioAuth.adminMB.ativarPainelGerHospedagens}"
-                                            render=":frmPaineisAcesso :painelPerfil :painelGerEquips :painelGerChales :painelGerClientes :painelGerHospedagens"/>
+                                            render=":frmPaineisAcesso :outrosforms :frmPerfilAdmin :frmGerEquips :frmGerChales :frmGerClientes :frmGerHospedagem"/>
                                 </h:commandLink>
                             </li>
                         </ul>
@@ -75,6 +75,24 @@
                         <h:panelGroup id="frmGerEquips">
                             <ui:fragment rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerEquips}">
                                 <ui:include src="gerencias/admin_ger_equips.xhtml"/>
+                            </ui:fragment>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup id="frmGerChales">
+                            <ui:fragment rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerChales}">
+                                <ui:include src="gerencias/admin_ger_chales.xhtml"/>
+                            </ui:fragment>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup id="frmGerClientes">
+                            <ui:fragment rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerClientes}">
+                                <ui:include src="gerencias/admin_ger_clientes.xhtml"/>
+                            </ui:fragment>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup id="frmGerHospedagem">
+                            <ui:fragment rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeGerHospedagens}">
+                                <ui:include src="gerencias/admin_ger_hospedagem.xhtml"/>
                             </ui:fragment>
                         </h:panelGroup>
                         

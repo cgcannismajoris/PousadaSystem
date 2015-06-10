@@ -7,20 +7,19 @@
 
     <!-- ABAS DE NAVEGAÇÃO -->
     <div class="row">
-        <h:form id="frmTabsChale">
+        <h:form id="frmTabsCliente">
             <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" id="abaInserirChale" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeInserirChale}"
+                <li role="presentation" id="abaInserirCliente" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeInserirCliente}"
                     >
-                    <h:commandLink value="Inserir Chalé">
-                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerChalesInserirChale}"
-                                render=":frmTabsChale :abaInserirChale :abaVisualChales :paineis-chale :frmInserirChale :frmInserirVisualChales"/>
+                    <h:commandLink value="Inserir Cliente">
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerClientesInserirCliente}"
+                                render=":abaInserirCliente :frmTabsCliente :paineis-cliente :frmInserirCliente :frmVisualClientes"/>
                     </h:commandLink>
                 </li>
-                <li role="presentation" id="abaVisualChales" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeVisualChales}"
-                    action="dashboard">
-                    <h:commandLink value="Visualizar Chalés">
-                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerChalesVisualChales}"
-                                render=":frmTabsChale :abaInserirChale :abaVisualChales :paineis-chale :frmInserirChale :frmInserirVisualChales"/>
+                <li role="presentation" id="abaVisualClientes" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeVisualClientes}">
+                    <h:commandLink value="Visualizar Clientes">
+                        <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerClientesVisualChales}"
+                                render=":abaInserirCliente :frmTabsCliente :paineis-cliente :frmInserirCliente :frmVisualClientes"/>
                     </h:commandLink>
                 </li>
             </ul>
@@ -29,8 +28,8 @@
 
     <div class="row">
         <!-- FORMULÁRIO DE INSERÇÃO DE EQUIPAMENTO -->
-        <h:panelGroup id="paineis-chale">
-            <h:form id="frmInserirChale" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeInserirChale}">
+        <h:panelGroup id="paineis-cliente">
+            <h:form id="frmInserirCliente" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeInserirCliente}">
                 <div class="row">
                     <br/>
                     <div class="col-md-10">
@@ -51,7 +50,7 @@
                 </div>
             </h:form>
             
-            <h:form id="frmInserirVisualChales" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualChales}">
+            <h:form id="frmVisualClientes" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualClientes}">
                 <div class="row">
                     Visualização.
 
@@ -64,4 +63,5 @@
     </div>
 
 </html>
+
 
