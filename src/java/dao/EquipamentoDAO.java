@@ -205,4 +205,45 @@ public class EquipamentoDAO {
 
         return retorno;
     }
+    
+    @SuppressWarnings("null")
+    public static boolean atualizarEquipamento(Equipamento e){
+
+        boolean retorno = true;
+
+        con = GerenciadorDB.getInstance().abrirConexao();
+        String sql
+                = "UPDATE equipamento SET descricao = ? WHERE idEquipamento = ?;";
+
+        PreparedStatement stmt = null;
+
+        try
+        {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, e.getDescricao());
+            stmt.setInt(2, e.getId());
+            
+            //Insere no banco
+            stmt.executeUpdate();
+            stmt.close();
+            
+            retorno = true;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            retorno = false;
+        } finally
+        {
+            try
+            {
+                stmt.close();
+                con.close();
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return retorno;
+    }
 }

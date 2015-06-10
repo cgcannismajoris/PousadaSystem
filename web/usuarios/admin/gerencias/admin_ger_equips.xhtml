@@ -7,8 +7,7 @@
     <div class="row">
         <h:form id="frmTabs">
             <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" id="abaInserirEquip" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeInserirEquip}"
-                    >
+                <li role="presentation" id="abaInserirEquip" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeInserirEquip}">
                     <h:commandLink value="Inserir Equipamento">
                         <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerEquipsInserirEquip}"
                                 render=":frmTabs :abaInserirEquip : abaVisualEquips :paineis :frmInserirEquips :frmVisualEquips"/>
@@ -52,22 +51,34 @@
             </h:form>
 
             <!-- FORMULÁRIO DE VISUALIZAÇÃO DE EQUIPAMENTO -->
+            <div style="height: 500px; overflow: auto;">
+                <h:form id="frmVisualEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualEquips}">
 
-            <h:form id="frmVisualEquips" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualEquips}">
-                <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquips()}" var="equips">
-                    <h:column>
-                        <f:facet name="header">Id</f:facet>
-                            #{equips.id}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Descrição</f:facet>
-                            #{equips.descricao}
-                    </h:column>
-                </h:dataTable>
-            </h:form>
+                        <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquips()}" var="equip">
+                            <h:column>
+                                <f:facet name="header">Id</f:facet>
+                                <h:outputLabel value="#{equip.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Descrição</f:facet>
+                                <h:outputLabel value="#{equip.descricao}" rendered="#{not equip.editable}"/>
+                                <h:inputText value="#{equip.descricao}" rendered="#{equip.editable}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Ação</f:facet>
+                                <h:commandButton class="btn btn-success" value="Editar" action="#{sessaoUsuario.usuarioAuth.adminMB.editarEquip(equip)}"
+                                                 rendered="#{not equip.editable}"/>
+                                <h:commandButton class="btn btn-danger" value="Apagar" action="#{sessaoUsuario.usuarioAuth.adminMB.apagarEquip(equip)}"
+                                                 rendered="#{equip.editable}"/>
+                                <h:commandButton class="btn btn-info" value="Salvar" action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip(equip)}"
+                                                 rendered="#{equip.editable}"/>
+                            </h:column>
+                        </h:dataTable>
 
+                </h:form>
+            </div>
         </h:panelGroup>
-
+        
     </div>
 </html>
 

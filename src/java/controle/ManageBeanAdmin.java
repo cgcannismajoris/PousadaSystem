@@ -35,7 +35,7 @@ public class ManageBeanAdmin
     private boolean boolExibeGerChales;
     private boolean boolExibeGerClientes;
     private boolean boolExibeGerHospedagens;
-
+    
     // Estados de interface de abas
     // Gerência de Equipamento
     public final byte ABA_GER_EQUIPS_INSERIR_EQUIP = 1;
@@ -83,7 +83,25 @@ public class ManageBeanAdmin
             return (null);
         }
     }
-
+    
+    public String editarEquip(Equipamento e){
+        e.setEditable(true);
+        System.out.println("aqui " + e.getDescricao() + "++++++++++++++++++++++++++++++++++++++++++++++++++");
+        return ("dashboard");
+    }
+    
+    public String salvarEquip(Equipamento e){
+        e.setEditable(false);
+        EquipamentoDAO.atualizarEquipamento(e);
+        System.out.println("aqui " + e.getDescricao() + "++++++++++++++++++++++++++++++++++++++++++++++++++");
+        return ("dashboard");
+    }
+    
+    public String apagarEquip(Equipamento e){
+        e.setEditable(false);
+        return ("dashboard");
+    }
+    
     public ArrayList<Equipamento> carregarTodosEquips(){
         this.tmpEquips = EquipamentoDAO.obterTodos();
         return (this.tmpEquips);

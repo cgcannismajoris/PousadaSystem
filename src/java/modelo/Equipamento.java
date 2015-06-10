@@ -6,6 +6,7 @@ public class Equipamento
 {
     private Integer id;
     private String descricao;
+    private boolean editable = false;
     
     public Equipamento() {}
 
@@ -35,6 +36,14 @@ public class Equipamento
         this.descricao = descricao;
     }
 
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
+    
     @Override
     public int hashCode()
     {
