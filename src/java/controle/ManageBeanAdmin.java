@@ -3,6 +3,7 @@ package controle;
 // ManageBean específico para Administrador
 import dao.ChaleDAO;
 import dao.EquipamentoDAO;
+import dao.UsuarioDAO;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import modelo.Administrador;
 import modelo.Chale;
+import modelo.Cliente;
 import modelo.Equipamento;
 
 @ManagedBean(name = "adminMB")
@@ -83,6 +85,10 @@ public class ManageBeanAdmin
     private String strExibeRealizarHosp = "active";
     private String strExibeVisualHosps = "";
 
+    //Cliente Temporário
+    private Cliente tmpCliente = new Cliente();
+    private ArrayList<Cliente> tmpClientes = new ArrayList<>();
+    
     // Equipamento temporário
     private Equipamento tmpEquip = new Equipamento();
     private ArrayList<Equipamento> tmpEquips = new ArrayList<>();
@@ -190,7 +196,42 @@ public class ManageBeanAdmin
             return (null);
         }
     }
+    
+    public String salvarCliente(){
 
+        if (UsuarioDAO.inserirPessoaDAO(tmpCliente))
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_INFO,
+                            "Sucesso!",
+                            "Sucesso ao inserir."
+                    )
+            );
+
+            this.tmpCliente.setDataNascimento(null);
+            this.tmpCliente.setEndereco("");
+            this.tmpCliente.setId(0);
+            this.tmpCliente.setLogin("");
+            this.tmpCliente.setNome("");
+            this.tmpCliente.setSenha("");
+
+            return (null);
+        } else
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Erro!",
+                            "Erro ao inserir equipamento."
+                    )
+            );
+            return (null);
+        }
+    }
+    
     public ArrayList<Equipamento> carregarTodosEquips()
     {
         this.tmpEquips = EquipamentoDAO.obterTodos();
@@ -216,6 +257,11 @@ public class ManageBeanAdmin
         return (this.tmpChales);
     }
 
+    public ArrayList<Cliente> carregarTodosClientes(){
+        this.tmpClientes = UsuarioDAO.obterClientes();
+        return (this.tmpClientes);
+    }
+    
     public void ativarPainelPerfil(AjaxBehaviorEvent event)
     {
         this.trocarPainel(PAINEL_PERFIL);
@@ -798,5 +844,13 @@ public class ManageBeanAdmin
     public void setStrExibeVisualHosps(String strExibeVisualHosps)
     {
         this.strExibeVisualHosps = strExibeVisualHosps;
+    }
+
+    public Cliente getTmpCliente() {
+        return tmpCliente;
+    }
+
+    public void setTmpCliente(Cliente tmpCliente) {
+        this.tmpCliente = tmpCliente;
     }
 }

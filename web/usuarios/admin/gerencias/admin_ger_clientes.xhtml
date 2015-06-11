@@ -32,33 +32,50 @@
             <h:form id="frmInserirCliente" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeInserirCliente}">
                 <div class="row">
                     <br/>
-                    <div class="col-md-10">
-                        <ui:include src="../../../formularios/equipamento/input_equipamento.xhtml">
-                            <ui:param name="inputDescricao"
-                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpEquip.descricao}"/>
+                    <div class="col-lg-11">
+                        <!-- FORMULÁRIO DE PREENCHIMENTO DE DADOS DE PESSOA -->
+                        <ui:include src="../../../formularios/input_pessoa.xhtml">
+                            <ui:param name="inputNome" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpCliente.nome}"/>
+                            <ui:param name="inputEndereco" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpCliente.endereco}"/>
+                            <ui:param name="inputDataNascimento" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpCliente.dataNascimento}"/>
+                            <ui:param name="inputLogin" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpCliente.login}"/>
+                            <ui:param name="inputSenha" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpCliente.senha}"/>
                         </ui:include>
                         <br/><br/>
                         <h:commandButton value="Inserir" class="btn btn-success"
-                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip}">
+                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarCliente()}">
                         </h:commandButton>
                         <br/><br/>
+                        <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
+                        <h:message for="descricao" class="alert alert-warning"/>
                     </div>
-
-                    <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
-                    <h:message for="descricao" class="alert alert-warning"/>
-
                 </div>
             </h:form>
             
-            <h:form id="frmVisualClientes" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualClientes}">
-                <div class="row">
-                    Visualização.
-
+            <div style="height: 500px; overflow: auto;">
+                <h:form id="frmVisualClientes" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualClientes}">
+                    <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosClientes()}" var="cliente">
+                        <h:column>
+                            <f:facet name="header">Nome</f:facet>
+                            <h:outputLabel value="#{cliente.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Data de Nascimento</f:facet>
+                            <h:outputLabel value="#{cliente.dataNascimento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Login</f:facet>
+                            <h:outputLabel value="#{cliente.login}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Endereço</f:facet>
+                            <h:outputLabel value="#{cliente.endereco}"/>
+                        </h:column>
+                    </h:dataTable>
                     <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
                     <h:message for="descricao" class="alert alert-warning"/>
-
-                </div>
-            </h:form>
+                </h:form>
+            </div>  
         </h:panelGroup>
     </div>
 
