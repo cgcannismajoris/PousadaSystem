@@ -59,4 +59,45 @@ public class HospedagemDAO
 
         return retorno;
     }
+    
+    @SuppressWarnings("null")
+    public static boolean finalizarHospDAO(Hospedagem hosp)
+    {
+        boolean retorno = true;
+
+        con = GerenciadorDB.getInstance().abrirConexao();
+        String sql
+                = "UPDATE hospedagem SET dataSaida = ? WHERE idHospedagem = ?;";
+
+        PreparedStatement stmt = null;
+
+        try
+        {
+            stmt = con.prepareStatement(sql);
+            stmt.setDate(1, new java.sql.Date(hosp.getDataSaida().getTime()));
+            stmt.setInt(2, hosp.getId());
+            
+            //Insere no banco
+            stmt.executeUpdate();
+            stmt.close();
+            
+            retorno = true;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            retorno = false;
+        } finally
+        {
+            try
+            {
+                stmt.close();
+                con.close();
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(EquipamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return retorno;
+    }
 }
