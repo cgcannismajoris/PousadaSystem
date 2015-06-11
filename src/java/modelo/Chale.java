@@ -133,4 +133,9 @@ public class Chale
         }
         return true;
     }
+    
+    @Override
+    public String toString(){
+        return ("Número: " + this.numero + " - Diária: " + this.diaria);
+    }
 }

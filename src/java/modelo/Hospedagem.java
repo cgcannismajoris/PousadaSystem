@@ -32,6 +32,8 @@ public class Hospedagem
         this.chale = chale;
     }
 
+    public Hospedagem() {   }
+
     public int finalizarHospedagem(Date dataSaida)
     {
         if (this.dataInicio.after(dataInicio))

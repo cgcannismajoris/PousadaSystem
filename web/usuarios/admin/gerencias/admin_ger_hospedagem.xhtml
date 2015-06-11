@@ -33,20 +33,40 @@
                 <div class="row">
                     <br/>
                     <div class="col-md-10">
-                        <ui:include src="../../../formularios/equipamento/input_equipamento.xhtml">
-                            <ui:param name="inputDescricao"
-                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpEquip.descricao}"/>
-                        </ui:include>
+                        <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
+                        <h:message for="qtdAcomps" class="alert alert-warning"/>
+                        <h:message for="dataInicio" class="alert alert-warning"/>
+                        <h:message for="previsao" class="alert alert-warning"/>
                         <br/><br/>
-                        <h:commandButton value="Inserir" class="btn btn-success"
-                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarEquip}">
-                        </h:commandButton>
+                        <ui:include src="../../../formularios/hospedagem/input_hospedagem.xhtml">
+                            <ui:param name="inputQtdAcomps"
+                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.quantAcomp}"/>
+                            <ui:param name="inputDataInicio"
+                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.dataInicio}"/>
+                            <ui:param name="inputPrevisao"
+                                      value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.previsao}"/>
+                        </ui:include>
+                        
+                        <br/>
+                        
+                        Chalé:
+                        <h:selectOneMenu class="list-group-item" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.chale}">
+                            <f:selectItems value="#{sessaoUsuario.usuarioAuth.adminMB.tmpChales}"/>
+                        </h:selectOneMenu>
+                        
+                        Cliente:
+                        <h:selectOneMenu class="list-group-item" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.cliente}">
+                            <f:selectItems value="#{sessaoUsuario.usuarioAuth.adminMB.tmpClientes}"/>
+                        </h:selectOneMenu>
+                        
+                        <br/><br/>
+                        <div class="row">
+                            <h:commandButton value="Inserir" class="btn btn-success"
+                                             action="#{sessaoUsuario.usuarioAuth.adminMB.salvarHospedagem()}">
+                            </h:commandButton>
+                        </div>
                         <br/><br/>
                     </div>
-
-                    <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
-                    <h:message for="descricao" class="alert alert-warning"/>
-
                 </div>
             </h:form>
             

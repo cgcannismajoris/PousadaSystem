@@ -21,8 +21,8 @@ public class HospedagemDAO
         con = GerenciadorDB.getInstance().abrirConexao();
         String sql =
         
-        "INSERT INTO hospedagem (quantAcomp, dataInicio, dataSaida, previsao, Cliente_idCliente, Chale_idChale)"
-                + "VALUES (?, ?, ?, ?, ?, ?);";
+        "INSERT INTO hospedagem (quantAcomp, dataInicio, previsao, Cliente_idCliente, Chale_idChale)"
+                + "VALUES (?, ?, ?, ?, ?);";
 
         PreparedStatement stmt = null;
         
@@ -31,11 +31,10 @@ public class HospedagemDAO
             stmt = con.prepareStatement(sql);
             
             stmt.setInt(1, hosp.getQuantAcomp());
-            stmt.setDate(2, (Date) hosp.getDataInicio());
-            stmt.setDate(3, (Date) hosp.getDataSaida());
-            stmt.setInt(4, hosp.getPrevisao());
-            stmt.setInt(5, hosp.getCliente().getId());
-            stmt.setInt(6, hosp.getChale().getId());
+            stmt.setDate(2, new java.sql.Date(hosp.getDataInicio().getTime()));
+            stmt.setInt(3, hosp.getPrevisao());
+            stmt.setInt(4, hosp.getCliente().getId());
+            stmt.setInt(5, hosp.getChale().getId());
             
             //Insere no banco
             stmt.executeUpdate();

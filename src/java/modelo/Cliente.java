@@ -6,4 +6,9 @@ public class Cliente extends Pessoa
     {
         this.privilegio = 2;
     }
+    
+    @Override
+    public String toString(){
+        return ("Nome: " + this.nome + " - Login: " + this.login);
+    }
 }

@@ -3,6 +3,7 @@ package controle;
 // ManageBean específico para Administrador
 import dao.ChaleDAO;
 import dao.EquipamentoDAO;
+import dao.HospedagemDAO;
 import dao.UsuarioDAO;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,11 +13,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import modelo.Administrador;
 import modelo.Chale;
 import modelo.Cliente;
 import modelo.Equipamento;
+import modelo.Hospedagem;
 
 @ManagedBean(name = "adminMB")
 @RequestScoped
@@ -98,6 +101,10 @@ public class ManageBeanAdmin
     // Chalé temporário
     private Chale tmpChale = new Chale();
     private ArrayList<Chale> tmpChales = new ArrayList<>();
+    
+    // Hospedagem temporária
+    private Hospedagem tmpHosp = new Hospedagem();
+    private ArrayList<Hospedagem> tmpHosps = new ArrayList<>();
 
     public String salvarEquip()
     {
@@ -225,7 +232,44 @@ public class ManageBeanAdmin
                     new FacesMessage(
                             FacesMessage.SEVERITY_ERROR,
                             "Erro!",
-                            "Erro ao inserir equipamento."
+                            "Erro ao inserir cliente."
+                    )
+            );
+            return (null);
+        }
+    }
+    
+    public String salvarHospedagem(){
+        System.out.println("aqui ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        if (HospedagemDAO.realizarHospDAO(tmpHosp))
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_INFO,
+                            "Sucesso!",
+                            "Sucesso ao inserir."
+                    )
+            );
+
+            this.tmpHosp.setChale(null);
+            this.tmpHosp.setCliente(null);
+            this.tmpHosp.setDataInicio(null);
+            this.tmpHosp.setDataSaida(null);
+            this.tmpHosp.setId(0);
+            this.tmpHosp.setPagamento(null);
+            this.tmpHosp.setPrevisao(0);
+            this.tmpHosp.setQuantAcomp(0);
+
+            return (null);
+        } else
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Erro!",
+                            "Erro ao inserir hospedagem."
                     )
             );
             return (null);
@@ -419,6 +463,8 @@ public class ManageBeanAdmin
 
     public void ativarAbaGerHospsRealizarHosp(AjaxBehaviorEvent event)
     {
+        this.carregarTodosClientes();
+        this.carregarTodosChales();
         trocarAbaGerHosps(ABA_GER_HOSPS_REALIZAR_HOSP);
     }
 
@@ -853,4 +899,29 @@ public class ManageBeanAdmin
     public void setTmpCliente(Cliente tmpCliente) {
         this.tmpCliente = tmpCliente;
     }
+
+    public Hospedagem getTmpHosp() {
+        return tmpHosp;
+    }
+
+    public void setTmpHosp(Hospedagem tmpHosp) {
+        this.tmpHosp = tmpHosp;
+    }
+
+    public ArrayList<Chale> getTmpChales() {
+        return tmpChales;
+    }
+
+    public void setTmpChales(ArrayList<Chale> tmpChales) {
+        this.tmpChales = tmpChales;
+    }
+
+    public ArrayList<Cliente> getTmpClientes() {
+        return tmpClientes;
+    }
+
+    public void setTmpClientes(ArrayList<Cliente> tmpClientes) {
+        this.tmpClientes = tmpClientes;
+    }
+    
 }

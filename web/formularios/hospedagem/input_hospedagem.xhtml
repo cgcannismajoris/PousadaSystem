@@ -1,34 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <!-- Quantidade de Acompanhantes -->
     <div class="col-md-3 col-centered">
         <h:outputLabel value="Qtd. acompanhantes" for="qtdAcomps"/>
         <h:inputText id="qtdAcomps" class="form-control"
-                     value="#{inputQtdAcomps}"/>
+                     value="#{inputQtdAcomps}"
+                     required="true"
+                     requiredMessage="Qtd. acompanhantes: Campo vazio."/>
     </div>
     
     <!-- Data de Início -->
     <div class="col-md-3 col-centered">
         <h:outputLabel value="Data de início: " for="dataInicio"/>
         <h:inputText id="dataInicio" class="form-control"
-                     value="#{inputDataInicio}"/>
-    </div>
-    
-    <!-- Data de Saída -->
-    <div class="col-md-3 col-centered">
-        <h:outputLabel value="Data de saída: " for="dataSaida"/>
-        <h:inputText id="dataSaida" class="form-control"
-                     value="#{inputDataDaida}"/>
+                     value="#{inputDataInicio}"
+                     required="true"
+                     requiredMessage="Data de início: Campo vazio."
+                     converterMessage="Formato de data inválida.">
+                <f:convertDateTime type="date" locale="pt_BR" pattern="dd/MM/yyyy"/>
+        </h:inputText>
     </div>
     
     <!-- Previsão -->
     <div class="col-md-3 col-centered">
         <h:outputLabel value="Previsão: " for="previsao"/>
         <h:inputText id="previsao" class="form-control"
-                     value="#{inputPrevisao}"/>
+                     value="#{inputPrevisao}"
+                     required="true"
+                     requiredMessage="Previsão: Campo vazio."/>
     </div>
     
     
