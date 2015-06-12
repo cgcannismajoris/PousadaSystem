@@ -49,12 +49,24 @@
 
                         <br/><h:outputLabel value="Equipamentos:"/><br/>
 
-                        <ui:repeat var="item" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquipsForNewChale()}">
-                            <h:selectBooleanCheckbox value="#{sessaoUsuario.usuarioAuth.adminMB.tmpMapSelectedEquips[item]}"/>
-                            <h:outputText value="#{item}" />
-                            <br/>
-                        </ui:repeat>
+                        <div class="row" style="max-height: 150px; overflow: auto;">
 
+                            <div class="col-md-12">
+                                <ui:repeat var="item" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodosEquipsForNewChale()}">
+                                    <div class="row">
+                                        <div class="col-md-push-1 col-md-2">
+                                          <h:selectBooleanCheckbox value="#{sessaoUsuario.usuarioAuth.adminMB.tmpMapSelectedEquips[item]}"/>
+                                        </div>
+                                        
+                                        <div class="col-md-3 text-left">
+                                            <h:outputText value="#{item}" class=""/>
+                                        </div>
+
+                                        <br/>
+                                    </div>
+                                </ui:repeat>
+                            </div>
+                        </div>
                         <br/><br/>
                         <h:commandButton value="Inserir" class="btn btn-success"
                                          action="#{sessaoUsuario.usuarioAuth.adminMB.salvarChale}">
