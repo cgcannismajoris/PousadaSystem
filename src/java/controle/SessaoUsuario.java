@@ -37,8 +37,8 @@ public class SessaoUsuario
     
     public void obterDadosAdmin(AjaxBehaviorEvent event)
     {
-        this.getVisitante().setLogin("carlaovagabundo");
-        this.getVisitante().setSenha("carlao22doido");
+        this.getVisitante().setLogin("carlaoAdmin");
+        this.getVisitante().setSenha("carlao22");
     }
     
     public String logar()

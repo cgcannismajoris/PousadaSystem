@@ -33,7 +33,7 @@ public class HospedagemDAO
         try
         {
             stmt = con.prepareStatement(sql);
-            
+            System.out.println("" + hosp.getCliente().getId() + "+++++++++++++++++++++++++++++++++++++++++++++++++++");
             stmt.setInt(1, hosp.getQuantAcomp());
             stmt.setDate(2, new java.sql.Date(hosp.getDataInicio().getTime()));
             stmt.setInt(3, hosp.getPrevisao());

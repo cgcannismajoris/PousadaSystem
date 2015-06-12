@@ -274,7 +274,7 @@ public class UsuarioDAO
                 // Preencher os dados dos clientes
                 clienteLido = (Cliente) PessoaFactory.getPessoa(PessoaFactory.TipoPessoa.CLIENTE);
  
-                clienteLido.setId(new Integer(rs.getString("idPessoa")));
+                clienteLido.setId(new Integer(rs.getString("idCliente")));
                 clienteLido.setLogin(rs.getString("login"));
                 //clienteLido.setSenha(rs.getString("senha"));
                 clienteLido.setNome(rs.getString("nome"));

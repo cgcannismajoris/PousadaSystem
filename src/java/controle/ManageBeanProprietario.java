@@ -34,8 +34,8 @@ public class ManageBeanProprietario
                     + "Cidade de Vassourinhas");
 
             this.tmpAdministrador.setDataNascimento(new Date("1980/12/10")); // ISO 8601
-            this.tmpAdministrador.setLogin("carlaovagabundo");
-            this.tmpAdministrador.setSenha("carlao22doido");
+            this.tmpAdministrador.setLogin("carlaoAdmin");
+            this.tmpAdministrador.setSenha("carlao22");
 
             this.existeAdmin = false;
         } else
