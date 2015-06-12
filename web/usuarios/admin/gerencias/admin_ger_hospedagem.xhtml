@@ -9,17 +9,16 @@
     <div class="row">
         <h:form id="frmTabsHospedagem">
             <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" id="abaRealizarHospedagem" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeRealizarHosp}"
-                    >
+                <li role="presentation" id="abaRealizarHospedagem" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeRealizarHosp}">
                     <h:commandLink value="Realizar Hospedagem">
                         <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerHospsRealizarHosp}"
-                                render=":abaRealizarHospedagem :frmTabsHospedagem :paineis-hospedagem :frmRealizarHospedagem :frmVisualHospedagens"/>
+                                render=":abaRealizarHospedagem :frmTabsHospedagem :paineisHospedagem :frmRealizarHospedagem :frmVisualHospedagens"/>
                     </h:commandLink>
                 </li>
                 <li role="presentation" id="abaVisualVisualHospedagens" class="#{sessaoUsuario.usuarioAuth.adminMB.strExibeVisualHosps}">
                     <h:commandLink value="Visualizar Hospedagens">
                         <f:ajax listener="#{sessaoUsuario.usuarioAuth.adminMB.ativarAbaGerHospsVisualHosps}"
-                                render=":abaRealizarHospedagem :frmTabsHospedagem :paineis-hospedagem :frmRealizarHospedagem :frmVisualHospedagens"/>
+                                render=":abaRealizarHospedagem :frmTabsHospedagem :paineisHospedagem :frmRealizarHospedagem :frmVisualHospedagens"/>
                     </h:commandLink>
                 </li>
             </ul>
@@ -28,7 +27,7 @@
 
     <div class="row">
         <!-- FORMULÁRIO DE INSERÇÃO DE EQUIPAMENTO -->
-        <h:panelGroup id="paineis-hospedagem">
+        <h:panelGroup id="paineisHospedagem">
             <h:form id="frmRealizarHospedagem" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeRealizarHosp}">
                 <div class="row row-centered">
                     <br/>
@@ -46,7 +45,7 @@
                             <ui:param name="inputPrevisao"
                                       value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.previsao}"/>
                         </ui:include>
-
+                        <br/><br/>
                         <br/>
 
                         <div class="row">
@@ -54,42 +53,61 @@
                             Chalé:
                             <div class="col-md-4 col-centered">
                                 <br/>
-                                <h:selectOneMenu class="list-group-item" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.chale}">
-                                    <f:selectItems value="#{sessaoUsuario.usuarioAuth.adminMB.tmpChales}"/>
+                                <h:selectOneMenu class="list-group-item" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.chale.id}">
+                                    <f:selectItems value="#{sessaoUsuario.usuarioAuth.adminMB.tmpChales}" var="chale" itemValue="#{chale.id}" itemLabel="#{chale.toString()}"/>
                                 </h:selectOneMenu>
                             </div>
 
+                            <br/>
 
                             Cliente:
                             <div class="col-md-4 col-centered">
                                 <br/>
-                                <h:selectOneMenu class="list-group-item" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.cliente}">
-                                    <f:selectItems value="#{sessaoUsuario.usuarioAuth.adminMB.tmpClientes}"/>
+                                <h:selectOneMenu class="list-group-item" value="#{sessaoUsuario.usuarioAuth.adminMB.tmpHosp.cliente.id}">
+                                    <f:selectItems value="#{sessaoUsuario.usuarioAuth.adminMB.tmpClientes}" var="cliente" itemValue="#{cliente.id}" itemLabel="#{cliente.toString()}"/>
                                 </h:selectOneMenu>
                             </div>
-
                         </div>
-
-                        <br/><br/>
-                        <div class="row">
-                            <h:commandButton value="Inserir" class="btn btn-success"
-                                             action="#{sessaoUsuario.usuarioAuth.adminMB.salvarHospedagem()}">
-                            </h:commandButton>
-                        </div>
-                        <br/><br/>
                     </div>
                 </div>
+                <br/><br/>
+                <h:commandButton value="Inserir" class="btn btn-success"
+                                        action="#{sessaoUsuario.usuarioAuth.adminMB.salvarHospedagem()}"/>
             </h:form>
-
-            <h:form id="frmVisualHospedagens" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualHosps}">
-                <div class="row">
-                    Visualização.
-
+            <div class="row">
+                <h:form id="frmVisualHospedagens" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualHosps}">
+                    <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodasHospedagens()}" var="hosp">
+                            <h:column>
+                                <f:facet name="header">Id</f:facet>
+                                <h:outputLabel value="#{hosp.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data de Início</f:facet>
+                                <h:outputLabel value="#{hosp.dataInicio}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data de Saída</f:facet>
+                                <h:outputLabel value="#{hosp.dataSaida}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Previsão</f:facet>
+                                <h:outputLabel value="#{hosp.previsao}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Quantidade de Acompanhantes</f:facet>
+                                <h:outputLabel value="#{hosp.quantAcomp}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Ação</f:facet>
+                                <h:commandButton value="Finalizar Hospedagem" class="btn btn-danger"
+                                                 action="#{sessaoUsuario.usuarioAuth.adminMB.finalizarHospedagem(hosp)}"
+                                                 rendered="#{not hosp.finalizada}"/>
+                            </h:column>
+                        </h:dataTable>
                     <h:messages infoClass="alert alert-info" errorClass="alert alert-danger" globalOnly="true"/>
                     <h:message for="descricao" class="alert alert-warning"/>
-
-                </div>
-            </h:form>
+                </h:form>
+            </div>
         </h:panelGroup>
     </div>
 

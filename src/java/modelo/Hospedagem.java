@@ -8,21 +8,20 @@ public class Hospedagem
 {
     public static final int FIMHOSP_SUCESSO = 0;
     public static final int FIMHOSP_DATA_INVALIDA = 1;
-    public static final int FINALIZADA = 1;
-    public static final int EM_PROGRESSO = 0;
 
     private int id;
     private int quantAcomp;
     private Date dataInicio;
     private Date dataSaida;
     private int previsao;
-    private Cliente cliente;
     
-    private Chale chale;
+    private Cliente cliente = new Cliente();
+    private Chale chale = new Chale();
     private ArrayList<ReciboDeServico> recibosDeServico;
     private Pagamento pagamento;
-    private int flag = Hospedagem.EM_PROGRESSO;
-
+    
+    private boolean finalizada = false;
+    
     public Hospedagem(int quantAcomp, Date dataInicio, int previsao, Cliente cliente, Chale chale)
     {
         this.quantAcomp = quantAcomp;
@@ -38,6 +37,7 @@ public class Hospedagem
     {
         if (this.dataInicio.after(dataInicio))
         {
+            this.finalizada = true;
             return (FIMHOSP_DATA_INVALIDA);
         }
 
@@ -104,6 +104,9 @@ public class Hospedagem
 
     public void setDataSaida(Date dataSaida)
     {
+        if(dataSaida != null){
+            this.finalizada = true;
+        }
         this.dataSaida = dataSaida;
     }
 
@@ -136,6 +139,12 @@ public class Hospedagem
     {
         this.pagamento = pagamento;
     }
-    
-    
+
+    public boolean isFinalizada() {
+        return finalizada;
+    }
+
+    public void setFinalizada(boolean finalizada) {
+        this.finalizada = finalizada;
+    }
 }

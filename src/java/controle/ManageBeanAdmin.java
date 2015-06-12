@@ -7,13 +7,13 @@ import dao.HospedagemDAO;
 import dao.UsuarioDAO;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import modelo.Administrador;
 import modelo.Chale;
@@ -240,7 +240,6 @@ public class ManageBeanAdmin
     }
     
     public String salvarHospedagem(){
-        System.out.println("aqui ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         if (HospedagemDAO.realizarHospDAO(tmpHosp))
         {
             FacesContext.getCurrentInstance().addMessage(
@@ -252,15 +251,43 @@ public class ManageBeanAdmin
                     )
             );
 
-            this.tmpHosp.setChale(null);
-            this.tmpHosp.setCliente(null);
+            this.tmpHosp.getChale().setId(0);
+            this.tmpHosp.getCliente().setId(0);
             this.tmpHosp.setDataInicio(null);
-            this.tmpHosp.setDataSaida(null);
             this.tmpHosp.setId(0);
-            this.tmpHosp.setPagamento(null);
             this.tmpHosp.setPrevisao(0);
             this.tmpHosp.setQuantAcomp(0);
 
+            return (null);
+        } else
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Erro!",
+                            "Erro ao inserir hospedagem."
+                    )
+            );
+            return (null);
+        }
+    }
+    
+    public String finalizarHospedagem(Hospedagem h){
+        
+        h.setDataSaida(new Date()); 
+        
+        if (HospedagemDAO.finalizarHospDAO(h))
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_INFO,
+                            "Sucesso!",
+                            "Sucesso ao inserir."
+                    )
+            );
+            this.tmpHosps = HospedagemDAO.obterTodasHosp();
             return (null);
         } else
         {
@@ -304,6 +331,11 @@ public class ManageBeanAdmin
     public ArrayList<Cliente> carregarTodosClientes(){
         this.tmpClientes = UsuarioDAO.obterClientes();
         return (this.tmpClientes);
+    }
+    
+    public ArrayList<Hospedagem> carregarTodasHospedagens(){
+        this.tmpHosps = HospedagemDAO.obterTodasHosp();
+        return (this.tmpHosps);
     }
     
     public void ativarPainelPerfil(AjaxBehaviorEvent event)
