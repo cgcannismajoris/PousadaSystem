@@ -74,7 +74,7 @@
                 <h:commandButton value="Inserir" class="btn btn-success"
                                         action="#{sessaoUsuario.usuarioAuth.adminMB.salvarHospedagem()}"/>
             </h:form>
-            <div class="row">
+            <div style="height: 200px; overflow: auto;">
                 <h:form id="frmVisualHospedagens" rendered="#{sessaoUsuario.usuarioAuth.adminMB.boolExibeVisualHosps}">
                     <h:dataTable class="table" headerClass="text-center" value="#{sessaoUsuario.usuarioAuth.adminMB.carregarTodasHospedagens()}" var="hosp">
                             <h:column>
@@ -94,7 +94,7 @@
                                 <h:outputLabel value="#{hosp.previsao}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Quantidade de Acompanhantes</f:facet>
+                                <f:facet name="header">Quantidade de Acomps</f:facet>
                                 <h:outputLabel value="#{hosp.quantAcomp}"/>
                             </h:column>
                             <h:column>
